@@ -1,0 +1,144 @@
+html, body
+{
+	height:100%;
+	background-color: #24201f;
+/* 	background: url("http://i.imgur.com/PyeRPgB.jpg"); */
+	font-family: "Ubuntu", Monospace, Arial, sans-serif;
+	color: #161616;
+}
+
+h1, h2, h3, h4, h5, h6
+{
+	font-weight:bold;
+}
+
+#top
+{
+	padding:20px;
+}
+
+#headshot
+{
+	margin-top:2%;
+}
+
+a
+{
+	color:#161616;
+}
+
+a:hover
+{
+	color:#565656;
+}
+
+#header
+{
+	background-color: #161616;
+	border-bottom: solid 1px #333;
+	color:#ccc;
+}
+
+#header a.navbar-brand
+{
+	color:#aaa;
+}
+
+#header a.navbar-brand:hover
+{
+	color:#aaa;
+	text-shadow: 2px 2px #111;
+}
+
+#header li a:hover
+{
+	color:#aaa;
+	background-color: #262626;
+}
+
+.xs-img 
+{
+	max-width:10%;
+}
+
+.sm-img 
+{
+	max-width:25%;
+}
+
+.md-img 
+{
+	max-width:50%;
+}
+
+.lg-img 
+{
+	max-width:75%;
+}
+
+img:not(.no-zoom).xs-img:hover, img:not(.no-zoom).sm-img:hover, img:not(.no-zoom).md-img:hover, img:not(.no-zoom).lg-img:hover
+{
+	max-width:100%;
+	transition-delay:0.5s;
+}
+
+.well
+{
+	background-color: rgba(245, 245, 245, 0.6);
+	border:none;
+	box-shadow:05px 015px 20px 10px #161616;
+}
+
+.well .img-thumbnail:not(#headshot)
+{
+	box-shadow:3px 5px 15px 5px grey;
+}
+
+.inverse-well
+{
+	background:none;
+	border:none;
+	box-shadow:none;
+	color:#ccc;
+}
+
+h1, h1 a, h1 a:hover
+{
+	color:#ccc;
+	font-family: "Unkempt";
+	font-size: 50px;
+	text-shadow: 3px 3px #161616;
+	text-decoration:none;
+}
+
+.green 
+{
+	background-color: green;
+}
+
+.red-text
+{
+	color: red;
+}
+
+hr.border
+{
+	border-color:#ccc;
+}
+
+#title h1
+{
+	font-weight:normal;
+}
+
+.row
+{
+	margin:10px;
+}
+
+button.scroll-click
+{
+	width:200px;
+	background-color:#ccc;
+	color:#161616;
+}
