@@ -2,7 +2,7 @@ html, body
 {
 	height:100%;
 	background-color: #24201f;
-	background: url("images/background.jpg");
+	background: url("../images/background.jpg");
 	font-family: "Ubuntu", Monospace, Arial, sans-serif;
 	color: #161616;
 }
