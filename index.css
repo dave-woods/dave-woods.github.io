@@ -4,3 +4,8 @@ body
 	background-color: #ddd;
 	color: #333;
 }
+
+a, a:visited, a:hover, a:active
+{
+	color: #333;
+}
