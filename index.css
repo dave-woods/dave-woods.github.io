@@ -1,11 +1,11 @@
-body
-{
-	font-family: Arial;
-	background-color: #ddd;
-	color: #333;
-}
+body {
+  background-color: pink;
+  font-family: arial;
+  color: #333; }
 
-a, a:visited, a:hover, a:active
-{
-	color: #333;
-}
+a {
+  color: #333; }
+  a:hover {
+    color: #444; }
+
+/*# sourceMappingURL=index.css.map */
