@@ -54,4 +54,22 @@ a {
   .strip:nth-of-type(even) {
     background-color: moccasin; }
 
+section.about {
+  height: 500px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 0 20px;
+  justify-content: space-around;
+  align-items: center; }
+  section.about p {
+    background-color: pink;
+    width: 20%; }
+    section.about p:nth-child(1) {
+      order: -1;
+      align-self: flex-start; }
+    section.about p:nth-child(2) {
+      order: 1;
+      align-self: flex-end; }
+
 /*# sourceMappingURL=main.css.map */
