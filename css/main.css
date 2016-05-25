@@ -6,26 +6,29 @@
 body {
   margin: 0; }
 
-header {
-  position: relative;
+.index-wrap header {
+  color: #cf4111;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-image: url("../images/shore.jpg");
+  background-color: #ccc;
   background-size: cover;
-  height: 100vh;
-  width: 100%;
-  margin: 0 0 0px 0;
-  padding: 0;
+  width: 135px;
+  margin: 0;
+  padding: 20px 0;
   z-index: 0; }
-  header h1, header h4 {
-    color: white;
-    margin: 0 auto;
-    font-size: 4rem;
-    text-shadow: 0 0 20px black; }
-  header h4 {
+  .index-wrap header a {
+    color: #cf4111; }
+  .index-wrap header h1 {
+    padding: 0;
+    margin: 0;
+    font-size: 3rem; }
+  .index-wrap header h4 {
+    padding: 0;
+    margin: 0;
     font-size: 1.5rem; }
+  .index-wrap header ul {
+    list-style: none;
+    padding: 0; }
 
 ul {
   position: relative;
