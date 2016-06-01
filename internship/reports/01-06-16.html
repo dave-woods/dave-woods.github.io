@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Dave Woods</title>
+	<link rel="stylesheet" href="../../css/main.css"/>
+	<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script src="js/main.js" type="text/javascript" charset="utf-8" async defer></script>
+</head>
+<body>
+	<header>
+		<h1 class="header-name">Internship Report</h1>
+		<h3>1st June 2016</h3>
+
+		<nav>
+			<ul>
+				<li>
+					<a href="#home">Home</a>
+				</li>
+				<li>
+					<a href="#about">About</a>
+				</li>
+				<li>
+					<a href="#projects">Projects</a>
+				</li>
+				<li>
+					<a href="#papers">Papers</a>
+				</li>
+				<li>
+					<a href="#contact">Contact</a>
+				</li>
+			</ul>
+		</nav>
+	</header>
+	<section class="strip">
+		<p>Began to use a Linux (Debian) virtual machine as of this morning. Accessed it via PuTTY, initially logging into my scss account by way of the macneill. I expect there is probably some way I could have used ssh to access the VM directly, but I didn't manage to figure that out this morning. Slight inconvenience in that my username for scss is <code>dwoods</code>, while my username for the VM is <code>davidw</code>, but oh well.</p>
+		<p>Had a few problems to begin with, as I fairly quickly realised that though all the tools I'd mentioned as needed were installed (except for Praat, which I'd forgotten about), they were somewhat spread out around the VM's directories, but more worryingly, MaryTTS itself was not installed on the VM at all. I think it goes without saying that this was rather problematic.</p>
+		<p>"Not to worry," I thought. "I'll just install it myself. I can download it with git, and I'm sure I can figure out the maven installation process without Eclipse." Unfortunately, as with all things Linux, this naïve idea was just a bit too optimistic. <code>Connection refused!</code> came the error message at every turn. I tried a number of methods that I found online to solve the problem, but <code>git</code> and <code>wget</code> did not want to work for me. I decided after my internet consulting, that the issue was related to my proxy settings. I thought this was a likely bet as the result of <code>echo $http_proxy</code> was blank. However, not having as much experience with these things as I might like, I did not know how exactly to solve my issue. I really ought to have, given I worked in the IT services last year.</p>
+		<p>Anyway, given that yesterday's problems with installing onto my Windows machine showed no signs of abating, I resolved to head down to the LG12 labs and use one of the Linux machines down there. That way I would have full access to a Linux distro (with GUI), Eclipse, and all that good stuff. After some configuring, I managed to get MaryTTS installed there, as well as EST, Festival, and Festvox all built and set up.</p>
+		<p>At this point, Joao emailed me to suggest using <code>scp</code> to copy MaryTTS onto the VM. This utility allows secure copying of files between host and guest machines over a ssh connection. Despite the progress I had made on the LG12 machine, the fact that there were still several more packages needed before I could even get things going, I decided to give the suggestion a shot.</p>
+		<p>Returning to my laptop and the VM, I tried to get things going. Despite the fact that I still couldn't get through the proxy in order to download anything, I somehow had sudo access, so I was able to install java, which for some reason was not on there by default. I was able to use the shell script MaryTTS provided to link up all the remaining requirements (HTS, EHMM, etc), since these were all installed by Joao. The only missing things were Praat and Snack for TCL, which my odd ability to use sudo allowed me to solve.</p>
+		<p>Onto the next issue - now that java was installed (twice - as I had to reconfigure it to use java 7 rather than 6 for MaryTTS), I could launch the <code>voiceimport.sh</code> tool in order to get things working... or so I thought. Unfortunately, since I was using PuTTY, I didn't have a way to have any sort of GUI to interact with, which MaryTTS requires. Luckily, after some more internet-searching, I found a solution in the form of a program call Xming, which (along with some PuTTY configuration) allows for X-Forwarding, which basically means I was able to get the MaryTTS GUI to display with the VM.</p>
+		<p>So at this point, I was more or less at the point where I'd gotten to the last couple days on my attempt at Windows installation. However, this time I had the advantage of everything being installed properly. So I made my way through the steps of the procedure once again, and reached the EHMMlabeler step as I have before. And, surprise surprise, it didn't work.</p>
+		<p>The issue this time seemed to be that a Perl script called <code>getwavlist.pl</code> was missing. MaryTTS couldn't find it, and neither could I, but it seemed to be required. I figured it might be due to the fact that I was using Festvox 2.7, while the version mentioned in the documentation was 2.1. Unfortunately, due to the fact that I still couldn't <code>wget</code> anything, I couldn't get at the older version to see if the missing file was there.</p>
+		<p>At this point, Joao appeared beside me, and I walked him through where I was, and showed him the connection issue I was getting. He brought me downstairs to talk to Eamonn Kenny. We explained the issue to him, and he was able to sort out my proxy settings. It was suggested that I maybe send him a list of the files I'd used to setup MaryTTS for future users. After heading back upstairs, I was able to download and build Festvox 2.1, which luckily contained the missing script.</p>
+		<p>After copying the file over to the newer version of Festvox, the EHMM stopped complaining, and (after about 45 minutes) completed the labelling process of the Arctic SLT voice.</p>
+	</section>
+	<section class="strip">
+
+
+	</section>
+</body>
+</html>
