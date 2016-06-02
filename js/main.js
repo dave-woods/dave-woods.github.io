@@ -12,11 +12,15 @@ $(document).ready(function(){
 		var fileextension = ".html";
 		$.ajax({
 			url: dir,
-			success: function (data) {
-				$(data).find("a:contains(" + fileextension + ")").each(function () {
+			success: function(data){
+				$(data).find("a:contains(" + fileextension + ")").each(function(){
 					var filename = this.href.replace(window.location.host, "").replace("http:///", "");
 					$(".report-list").append($("<li><a href=\"" + filename + "\">" + filename + "</a></li>"));
+					console.log("success");
 				});
+			},
+			error: function(){
+				console.log("error");
 			}
 		});
 	});
