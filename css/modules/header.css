@@ -1,4 +1,4 @@
-.index-wrap header {
+header {
   color: #cf4111;
   display: flex;
   flex-direction: column;
@@ -8,18 +8,19 @@
   margin: 0;
   padding: 20px 0;
   z-index: 0; }
-  .index-wrap header a {
+  header a {
     color: #cf4111; }
-  .index-wrap header h1 {
+  header h1 {
     padding: 0;
     margin: 0;
     font-size: 3rem; }
-  .index-wrap header h4 {
+  header h4 {
     padding: 0;
     margin: 0;
     font-size: 1.5rem; }
-  .index-wrap header ul {
+  header ul {
     list-style: none;
-    padding: 0; }
+    padding: 0;
+    margin: 0; }
 
 /*# sourceMappingURL=header.css.map */

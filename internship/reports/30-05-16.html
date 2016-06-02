@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Dave Woods</title>
+	<link rel="stylesheet" href="../../css/main.css"/>
+	<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script src="js/main.js" type="text/javascript" charset="utf-8" async defer></script>
+</head>
+<body>
+	<header>
+		<h1 class="header-name">Internship Report</h1>
+		<h3>30th May 2016</h3>
+
+		<nav>
+			<ul>
+				<li>
+					<a href="../..">Home</a>
+				</li>
+				<li>
+					<a href="#about">About</a>
+				</li>
+				<li>
+					<a href="#projects">Projects</a>
+				</li>
+				<li>
+					<a href="#papers">Papers</a>
+				</li>
+				<li>
+					<a href="#contact">Contact</a>
+				</li>
+				<li>
+					<a href="../../internship/reports">Internship Reports</a>
+				</li>
+			</ul>
+		</nav>
+	</header>
+	<div class="intern-report-wrap">
+		<div class="report">
+			<p>Today was the first day of my internship at the ADAPT centre, under the supervision of Dr Joao Cabral. The topic of the internship is <em>Expressive Speech Synthesis</em>, which effectively means we're working on improving the quality of text-to-speech systems, by making them sound more naturalistic. For example, in an audiobook, being able to modulate the voice quality depending on the character in the story, or the emotion of the scene, etc. would be very useful.</p>
+			<p>I began the day by getting a temporary keycard, so I could get in and out of the offices, followed by a (very) quick tour around. I met several people whose names I immediately couldn't remember, and then it was into the kitchen for a meeting with Joao, and someone who I think was named Christian. I'm not certain why he was there, but he was.</p>
+			<p>We discussed the overall plan for the eight weeks of my internship: starting with going through the MaryTTS system, setting it up and getting familiar with the process involved in creating a voice with it, then creating some sort of visualisation system for easy verification of annotations on sound files, followed by making modifications to the MaryTTS to better suit our purposes (adding sentiment annotations, etc.), and so on. I understood some of what we talked about, though I'm not sure what.</p>
+			<p>Following this I went upstairs to what was supposedly my desk (though Joao wasn't sure). I was to use my own laptop throughout the internship - although it was a Windows machine, I believed I could make most things work, especially since I had access to the LG12 SCSS Linux computers if I really needed. Joao also told me that he would set up a virtual machine for me that had some of the necessary tools pre-installed on it.</p>
+			<p>I began with reading through the MaryTTS documentation thoroughly, in order to understand the system and the steps it goes through as best as possible. Some of the sections were simpler than others, but overall, it seemed relatively understandable, on a general level. I didn't really try too hard to understand the code, as there was an awful lot of it. I downloaded it to my machine, both the binary release and the source code that Joao had linked me to.</p>
+			<p>After some time, I found and began to read through the MaryXML schema file, which gave the formal specification for the data format that MaryTTS used. This gave me a general understanding of the tagset used, as well as what parameters and attribute/value pairs were most useful, and let me theorise about where new, expressive ones could be implemented for the internship.</p>
+			<p>After this, I began to look into the process for creating a HMM voice with MaryTTS, and trying to install the various components required to do that. Initially, I apparently needed the Voice Import Tools provided with MaryTTS. However, this did not come with the binary release, and so I needed to build the application from the source code, which opened its own can of worms.</p>
+			<p>At first, all seemed fine, since I had the source files, and a detailed description was given in the documentation for compiling with Maven in the Eclipse IDE, one which I was already familiar with. However, immediately I ran into roadblocks, as the code refused to build, throwing up errors all over the place. For example, there was a version error, as one of the source code files checked whether the java version was either <code>1.5</code> or <code>1.6</code>, which was frustrating, given I have version <code>1.8</code> installed on my machine. That was a simple fix (adding the newer versions to the assertion check), but others were more complicated.</p>
+			<p>To cut a lengthy story filled with compilation errors short, it turned out that the version of source code which I had been linked to (by the official documentation) was outdated, by several years. So I deleted my entire workspace and started afresh, making sure every dependency was installed, and following the documentation's instructions religiously, to hopefully avoid the possibility of any more errors. After a short while, it built successfully! I was able to launch the server and the client scripts, install language/voice components, and perform speech synthesis with those voices, as well as launch the Voice Import Tools.</p>
+		</div>
+	</div>
+</body>
+</html>
