@@ -7,7 +7,9 @@ $(document).ready(function(){
 		}, 2000);
 	});
 
+	/*
 	$(".intern-report-wrap").ready(function(){
+		console.log("in-function");
 		var dir = ".";
 		var fileextension = ".html";
 		$.ajax({
@@ -24,4 +26,5 @@ $(document).ready(function(){
 			}
 		});
 	});
+	*/
 });
