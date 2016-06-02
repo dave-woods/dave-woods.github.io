@@ -1,36 +1,52 @@
 header
-	color: #cf4111
-	a
-		color: #cf4111	
-	h1
-		padding: 0
-		margin: 0
-		font-size: 3rem
-		// +hide-text
-		// text-shadow: 0 0 20px black
-	h4
-		// @extend h1
-		padding: 0
-		margin: 0
-		font-size: 1.5rem
-
-	// position: relative
-	display: flex
-	flex-direction: column
-	// justify-content: center
-	// align-items: center
+	width: 175px
+	// padding: 20px 0
 	background:
 		color: #ccc
-		//image: url("../images/shore.jpg")
-		size: cover
-	// +filt(grayscale(80%) contrast(50%))
-	// height: 100vh
-	width: 135px
-	margin: 0
-	padding: 20px 0
-	z-index: 0
+	position: relative
 
-	ul 
-		list-style: none
-		padding: 0
+	.header-positioning
+		color: #cf4111
+		a
+			color: #cf4111	
+		h1
+			margin: 0
+			text-align: right
+			margin-right: 20px
+			padding: 0
+			padding-top: 20px
+			font-size: 3rem
+		h3
+			padding: 0
+			margin: 0
+			font-size: 1.5rem
+			text-align: right
+			margin-right: 20px
+			margin-top: 20px
+
+		display: flex
+		flex-direction: column
+		// justify-content: center
+		background:
+			color: #ccc
+			//image: url("../images/shore.jpg")
+			// size: cover
+		width: 175px
 		margin: 0
+		// z-index: 0
+		position: fixed
+		top: 0px
+		left: 0
+		bottom: 0px
+
+		.site-nav
+			ul 
+				text-align: right
+				list-style: none
+				padding: 0
+				margin: 20px
+
+				li
+					margin-bottom: 10px
+					&:last-child
+						margin-bottom: 0

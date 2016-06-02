@@ -1,6 +1,9 @@
 .intern-report-wrap {
   background-color: #ddd;
-  padding: 20px; }
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex: 1; }
   .intern-report-wrap .report {
     background-color: #880a00;
     display: flex;

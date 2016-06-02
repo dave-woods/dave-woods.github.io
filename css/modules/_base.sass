@@ -3,9 +3,16 @@
 		family: arial
 		size: 16px
 	color: #333
+	// &::selection
+	// 	color: #333
+	// 	background: rgba(221, 170, 0, 0.7)
 
 a
 	font:
 		family: arial
 		size: 16px
 	color: #333
+	&[disabled]
+		color: #666
+		cursor: default
+		pointer-events: none

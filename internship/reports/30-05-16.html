@@ -9,31 +9,34 @@
 </head>
 <body>
 	<header>
-		<h1 class="header-name">Internship Report</h1>
-		<h3>30th May 2016</h3>
 
-		<nav>
-			<ul>
-				<li>
-					<a href="../..">Home</a>
-				</li>
-				<li>
-					<a href="#about">About</a>
-				</li>
-				<li>
-					<a href="#projects">Projects</a>
-				</li>
-				<li>
-					<a href="#papers">Papers</a>
-				</li>
-				<li>
-					<a href="#contact">Contact</a>
-				</li>
-				<li>
-					<a href="../../internship/reports">Internship Reports</a>
-				</li>
-			</ul>
-		</nav>
+		<div class="header-positioning">
+			<h1 class="header-name">Internship Report</h1>
+			<h3>30th May 2016</h3>
+
+			<nav class="site-nav">
+				<ul>
+					<li>
+						<a href="../..">Home</a>
+					</li>
+					<li>
+						<a href="#about">About</a>
+					</li>
+					<li>
+						<a href="#projects">Projects</a>
+					</li>
+					<li>
+						<a href="#papers">Papers</a>
+					</li>
+					<li>
+						<a href="#contact">Contact</a>
+					</li>
+					<li>
+						<a href=".">Internship Reports</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
 	</header>
 	<div class="intern-report-wrap">
 		<div class="report">
@@ -47,7 +50,7 @@
 			<p>At first, all seemed fine, since I had the source files, and a detailed description was given in the documentation for compiling with Maven in the Eclipse IDE, one which I was already familiar with. However, immediately I ran into roadblocks, as the code refused to build, throwing up errors all over the place. For example, there was a version error, as one of the source code files checked whether the java version was either <code>1.5</code> or <code>1.6</code>, which was frustrating, given I have version <code>1.8</code> installed on my machine. That was a simple fix (adding the newer versions to the assertion check), but others were more complicated.</p>
 			<p>To cut a lengthy story filled with compilation errors short, it turned out that the version of source code which I had been linked to (by the official documentation) was outdated, by several years. So I deleted my entire workspace and started afresh, making sure every dependency was installed, and following the documentation's instructions religiously, to hopefully avoid the possibility of any more errors. After a short while, it built successfully! I was able to launch the server and the client scripts, install language/voice components, and perform speech synthesis with those voices, as well as launch the Voice Import Tools.</p>
 		</div>
-		<div class="report-navigator"><a href="#">Previous report</a><a href="31-05-16.html">Next report</a></div>
+		<div class="report-navigator"><a disabled href="#">Previous report</a><a href="31-05-16.html">Next report</a></div>
 	</div>
 </body>
 </html>
