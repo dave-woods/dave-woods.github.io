@@ -26,23 +26,35 @@
 
 ##Step by step installation from scratch on Linux:
 - Install git
-    $ sudo apt-get install -y git
+```bash
+$ sudo apt-get install -y git
+```
 - Clone the repository
 ```bash
-		$ git clone https://github.com/marytts/marytts.git
+$ git clone https://github.com/marytts/marytts.git
 ```
 - Install Java JDK 7 and Maven
-		$ sudo apt-get install -y openjdk-7-jdk maven
+```bash
+$ sudo apt-get install -y openjdk-7-jdk maven
+```
 - Compile MaryTTS (from the top-level folder)
-		$ cd marytts
-		$ mvn install
+```bash
+$ cd marytts
+$ mvn install
+```
 - Run the server (replace `<VERSION>` with the appropriate version number, which may be suffixed with `-SNAPSHOT` e.g. `marytts-5.2-SNAPSHOT`)
-		$ target/marytts-<VERSION>/bin/marytts-server
+```bash
+$ target/marytts-<VERSION>/bin/marytts-server
+```
 - Connect to the server, either from a web browser at `localhost:59125`, or as follows
-		$ target/marytts-<VERSION>/bin/marytts-client
+```bash
+$ target/marytts-<VERSION>/bin/marytts-client
+```
 - From here, test that the synthesiser is working using the interface provided
 - Additional language/voice components can be installed
-		$ target/marytts-<VERSION>/bin/marytts-component-installer
+```bash
+$ target/marytts-<VERSION>/bin/marytts-component-installer
+```
 
 
 
