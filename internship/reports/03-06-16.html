@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Dave Woods</title>
+	<link rel="stylesheet" href="../../css/main.css"/>
+	<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script src="../../js/main.js" type="text/javascript" charset="utf-8" async defer></script>
+</head>
+<body>
+	<header>
+
+		<div class="header-positioning">
+			<h1 class="header-name">Internship Report</h1>
+			<h3>3rd June 2016</h3>
+
+			<nav class="site-nav">
+				<ul>
+					<li>
+						<a href="../..">Home</a>
+					</li>
+					<li>
+						<a href="#about">About</a>
+					</li>
+					<li>
+						<a href="#projects">Projects</a>
+					</li>
+					<li>
+						<a href="#papers">Papers</a>
+					</li>
+					<li>
+						<a href="#contact">Contact</a>
+					</li>
+					<li>
+						<a href=".">Internship Reports</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+	<div class="intern-report-wrap">
+		<div class="report">
+			<p>Today picked up from yesterday's lamentable pseudo-catastrophe. One of the points the documentation made was that several users had reported errors when running that particular piece of software from the java wrapper (as I did), and that they recommended running the perl scripts directly instead. I had initially tried that, but it hadn't seemed to have any effect - I believe this was because it was sending all output to a logfile and nothing to the screen, so I didn't think anything was happening. In fact, it may be that both the perl and the java commands were running simultaneously. This may even have caused the error in the first place, though I think this unlikely.</p>
+			<p>Anyway, today I began by running the perl scripts directly again, as directed by the documentation. However, this time I made sure that it was running in the foreground rather than background, output was streamed to the screen, and also <code>stdout</code> and <code>stderr</code> were piped to a logfile with <code>tee</code>. While that was running, I worked more on my reports, and also wrote up a list of all the software and steps needed to do what I had done this week.</p>
+		</div>
+		<div class="report-navigator"><a href="01-06-16.html">Previous report</a><a disabled href="#">Next report</a></div>
+	</div>
+</body>
+</html>
