@@ -1,0 +1,267 @@
+From: <Saved by Blink>
+Subject: 
+Date: Sat, 3 Jun 2016 13:48:39 -0000
+MIME-Version: 1.0
+Content-Type: multipart/related;
+	type="text/html";
+	boundary="----MultipartBoundary--pWjWNujU9ivPq2SXlF9Pe8mzM4QXI4A0eyInWLzyRw----"
+
+------MultipartBoundary--pWjWNujU9ivPq2SXlF9Pe8mzM4QXI4A0eyInWLzyRw----
+Content-Type: text/html
+Content-ID: <frame-5823-4D5C8DA9-DFCA-4E5B-A05B-06FE1FA58EA8@mhtml.blink>
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///C:/WDRIVE/WORKSPACE/dave-woods.github.io/internship/maryinstall.md
+
+<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html; charset=
+=3Dwindows-1252"><link rel=3D"stylesheet" id=3D"theme" href=3D"chrome-exten=
+sion://febilkbfcbhebfnokafefeacimjdckgl/theme/Clearness.css"></head><body><=
+h1 id=3D"installing-and-using-marytts">Installing and using MaryTTS</h1>
+<h4 id=3D"all-minimum-requirements-">All (minimum) requirements:</h4>
+<ul>
+<li>Java 7</li>
+<li>Maven 3.0</li>
+<li>MaryTTS 5.1</li>
+<li>awk, perl, bc</li>
+<li>sox 13.0</li>
+<li>tcl supporting snack</li>
+<li>snack library for tcl</li>
+<li>HTS 2.2 (patch for HTK 3.4.1)</li>
+<li>SPTK 3.4.1</li>
+<li>HTK 3.4.1</li>
+<li>HTS Engine API 1.05</li>
+<li>GNU make</li>
+<li>Edinburgh Speech Tools</li>
+<li>Festival</li>
+<li>Festvox</li>
+</ul>
+<h5 id=3D"notes-">Notes:</h5>
+<ul>
+<li>Strongly suggested to use a Linux machine.</li>
+<li>Suggested to use the most recent version available of all the above pro=
+grams.</li>
+<li>Festvox version 2.7 is missing a required file (<code>getwavlist.pl</co=
+de>), which can be found in version 2.1. Simply copying the file to the mat=
+ching directory from the older version to the newer is sufficient.</li>
+<li>Festvox building relies on Festival being build, which itself requires =
+the Edinburgh Speech Tools to be built. All of these are most reliably comp=
+iled with GNU make and gcc.</li>
+<li>From the root folder for MaryTTS, you can run <code>/lib/external/check=
+_install_external_programs.sh</code> with the option <code>-check</code> or=
+ <code>-install</code>. These will test if all the requirements can be foun=
+d (the second option will attempt to install them if not). You can also pro=
+vide paths to the tools as additional arguments. A <code>/lib/external/exte=
+rnalBinaries.config</code> file will be generated to locate the tools.</li>
+</ul>
+<h2 id=3D"step-by-step-installation-from-scratch-on-linux-">Step by step in=
+stallation from scratch on Linux:</h2>
+<ul>
+<li><p>Install git</p>
+<pre><code class=3D"lang-bash">$ su<span class=3D"operator"><span class=3D"=
+keyword">do</span> apt-<span class=3D"keyword">get</span> install -y git
+</span></code></pre>
+</li>
+<li><p>Clone the repository</p>
+<pre><code class=3D"lang-bash"><span class=3D"variable">$ </span>git clone =
+<span class=3D"symbol">https:</span>/<span class=3D"regexp">/github.com/mar=
+ytts</span><span class=3D"regexp">/marytts.git
+</span></code></pre>
+</li>
+<li><p>Install Java JDK 7 and Maven</p>
+<pre><code class=3D"lang-bash">$ su<span class=3D"operator"><span class=3D"=
+keyword">do</span> apt-<span class=3D"keyword">get</span> install -y openjd=
+k-<span class=3D"number">7</span>-jdk maven
+</span></code></pre>
+</li>
+<li><p>Compile MaryTTS (from the top-level folder)</p>
+<pre><code class=3D"lang-bash"><span class=3D"variable">$ </span>cd marytts
+<span class=3D"variable">$ </span>mvn install
+</code></pre>
+</li>
+<li><p>Run the server (replace <code>&lt;VERSION&gt;</code> with the approp=
+riate version number, which may be suffixed with <code>-SNAPSHOT</code> e.g=
+. <code>marytts-5.2-SNAPSHOT</code>)</p>
+<pre><code class=3D"lang-bash">$ target/marytts-<span class=3D"xml"><span c=
+lass=3D"tag">&lt;<span class=3D"title">VERSION</span>&gt;</span>/bin/marytt=
+s-server</span>
+</code></pre>
+</li>
+<li><p>Connect to the server, either from a web browser at <code>localhost:=
+59125</code>, or as follows</p>
+<pre><code class=3D"lang-bash">$ target/marytts-<span class=3D"xml"><span c=
+lass=3D"tag">&lt;<span class=3D"title">VERSION</span>&gt;</span>/bin/marytt=
+s-client</span>
+</code></pre>
+</li>
+<li><p>From here, test that the synthesiser is working using the interface =
+provided</p>
+</li>
+<li><p>Additional language/voice components can be installed</p>
+<pre><code class=3D"lang-bash">$ target/marytts-<span class=3D"xml"><span c=
+lass=3D"tag">&lt;<span class=3D"title">VERSION</span>&gt;</span>/bin/marytt=
+s-component-installer</span>
+</code></pre>
+</li>
+<li><p>Download the Edinburgh Speech Tools and Festival from <a href=3D"htt=
+p://www.cstr.ed.ac.uk/projects/festival/download.html">here</a></p>
+<ul>
+<li>Note that there are 5 packages to download:<ul>
+<li><code>festival-&lt;VERSION&gt;-release.tar.gz</code></li>
+<li><code>festlex_CMU.tar.gz</code></li>
+<li><code>festlex_OALD.tar.gz</code></li>
+<li><code>festlex_POSLEX.tar.gz</code></li>
+<li><code>speech_tools-&lt;VERSION&gt;-release.tar.gz</code></li>
+</ul>
+</li>
+<li>The lexicon packages (<code>festlex</code>) should be unpacked after th=
+e Festival package at the same level as the <code>festival</code> folder, a=
+s the files try to install in <code>festival/dicts</code>.</li>
+</ul>
+</li>
+<li><p>Download Festvox from <a href=3D"http://festvox.org/download.html">h=
+ere</a></p>
+<ul>
+<li>Note that, at time of writing, it is recommended to download both the l=
+atest version (2.7) and the previous version (2.1), as a required file is m=
+issing in the newer version, but can be found in the older.</li>
+</ul>
+</li>
+</ul>
+<h4 id=3D"to-use-marytts-just-for-speech-synthesis-">To use MaryTTS just fo=
+r speech synthesis:</h4>
+<h5 id=3D"latest-binary-release-at-time-of-writing-v5-1-2-">Latest binary r=
+elease (at time of writing v5.1.2)</h5>
+<ul>
+<li>Simply download the installer zip file from <a href=3D"https://github.c=
+om/marytts/marytts/releases">here</a></li>
+<li>Note that this will not include the voice building tools</li>
+</ul>
+<h5 id=3D"latest-source-release-at-time-of-writing-v5-2-beta3-">Latest sour=
+ce release (at time of writing v5.2-beta3)</h5>
+<ul>
+<li>Make sure the <a href=3D"http://maven.apache.org/download.html">Maven 3=
+.0 or higher</a> tool is installed</li>
+<li>Download the source code from <a href=3D"https://github.com/marytts/mar=
+ytts/releases">the release page</a>, or clone the repo</li>
+<li>In the top-level folder of the source code, run <code>mvn install</code=
+></li>
+<li>Once this compiles successfully, there should be a <code>target/marytts=
+-&lt;VERSION&gt;/bin</code> folder, which contains the components to run Ma=
+ryTTS</li>
+</ul>
+<p><strong>In both cases</strong>, to use the speech synthesiser, launch th=
+e <code>mary-server</code> component, then connect to it either with the <c=
+ode>mary-client</code> component, or using <code>localhost:59125</code> in =
+a web-browser.</p>
+</body></html>
+------MultipartBoundary--pWjWNujU9ivPq2SXlF9Pe8mzM4QXI4A0eyInWLzyRw----
+Content-Type: text/css
+Content-Transfer-Encoding: quoted-printable
+Content-Location: chrome-extension://febilkbfcbhebfnokafefeacimjdckgl/theme/Clearness.css
+
+@charset "windows-1252";
+
+h1, h2, h3, h4, h5, h6, p, blockquote { margin: 0px; padding: 0px; }
+
+body { font-family: 'Helvetica Neue', Helvetica, 'Hiragino Sans GB', Arial,=
+ sans-serif; font-size: 13px; line-height: 18px; color: rgb(115, 115, 115);=
+ margin: 10px 13px; }
+
+a { color: rgb(0, 105, 214); }
+
+a:hover { color: rgb(0, 80, 163); text-decoration: none; }
+
+a img { border: none; }
+
+p { margin-bottom: 9px; }
+
+h1, h2, h3, h4, h5, h6 { color: rgb(64, 64, 64); line-height: 36px; }
+
+h1 { margin-bottom: 18px; font-size: 30px; }
+
+h2 { font-size: 24px; }
+
+h3 { font-size: 18px; }
+
+h4 { font-size: 16px; }
+
+h5 { font-size: 14px; }
+
+h6 { font-size: 13px; }
+
+hr { margin: 0px 0px 19px; border-width: 0px 0px 1px; border-bottom-style: =
+solid; border-bottom-color: rgb(204, 204, 204); }
+
+blockquote { padding: 13px 13px 21px 15px; margin-bottom: 18px; font-family=
+: georgia, serif; font-style: italic; }
+
+blockquote::before { content: "=93"; font-size: 40px; margin-left: -10px; f=
+ont-family: georgia, serif; color: rgb(238, 238, 238); }
+
+blockquote p { font-size: 14px; font-weight: 300; line-height: 18px; margin=
+-bottom: 0px; font-style: italic; }
+
+code, pre { font-family: Monaco, 'Andale Mono', 'Courier New', monospace; }
+
+code { color: rgba(0, 0, 0, 0.74902); padding: 1px 3px; font-size: 12px; bo=
+rder-radius: 3px; background-color: rgb(254, 233, 204); }
+
+pre { display: block; padding: 14px; margin: 0px 0px 18px; line-height: 16p=
+x; font-size: 11px; border: 1px solid rgb(217, 217, 217); white-space: pre-=
+wrap; word-wrap: break-word; }
+
+pre code { color: rgb(115, 115, 115); font-size: 11px; padding: 0px; backgr=
+ound-color: rgb(255, 255, 255); }
+
+@media screen and (min-width: 768px) {=20
+  body { width: 748px; margin: 10px auto; }
+}
+
+pre code { display: block; padding: 0.5em; background: rgb(238, 238, 238); =
+}
+
+pre .decorator, pre .annotation { color: rgb(0, 0, 119); }
+
+pre .attribute { color: rgb(0, 119, 0); }
+
+pre .value, pre .string, pre .scss .value .string { color: rgb(221, 17, 68)=
+; }
+
+pre .comment { color: rgb(153, 153, 136); font-style: italic; }
+
+pre .function .title { color: rgb(153, 0, 0); }
+
+pre .class { color: rgb(68, 85, 136); }
+
+pre .id, pre .pseudo, pre .constant, pre .hexcolor { color: teal; }
+
+pre .variable { color: rgb(51, 102, 153); }
+
+pre .javadoc { color: rgb(153, 119, 0); }
+
+pre .pi, pre .doctype { color: rgb(51, 68, 187); }
+
+pre .number { color: rgb(0, 153, 153); }
+
+pre .important { color: rgb(255, 0, 0); }
+
+pre .label { color: rgb(153, 119, 0); }
+
+pre .preprocessor { color: rgb(85, 119, 153); }
+
+pre .reserved, pre .keyword, pre .scss .value { color: rgb(0, 0, 0); }
+
+pre .regexp { color: rgb(136, 0, 136); background-color: rgb(255, 240, 255)=
+; }
+
+pre .symbol { color: rgb(153, 0, 115); }
+
+pre .symbol .string { color: rgb(170, 102, 0); }
+
+pre .tag { color: rgb(0, 119, 0); }
+
+pre .at_rule, pre .at_rule .keyword { color: rgb(0, 136, 136); }
+
+pre .at_rule .preprocessor { color: rgb(136, 0, 136); }
+
+pre .scss .tag, pre .scss .attribute { color: rgb(51, 51, 153); }
+------MultipartBoundary--pWjWNujU9ivPq2SXlF9Pe8mzM4QXI4A0eyInWLzyRw------

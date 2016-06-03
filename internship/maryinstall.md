@@ -25,36 +25,56 @@
 - From the root folder for MaryTTS, you can run `/lib/external/check_install_external_programs.sh` with the option `-check` or `-install`. These will test if all the requirements can be found (the second option will attempt to install them if not). You can also provide paths to the tools as additional arguments. A `/lib/external/externalBinaries.config` file will be generated to locate the tools.
 
 ##Step by step installation from scratch on Linux:
+
 - Install git
 ```bash
 $ sudo apt-get install -y git
 ```
+
 - Clone the repository
 ```bash
 $ git clone https://github.com/marytts/marytts.git
 ```
+
 - Install Java JDK 7 and Maven
 ```bash
 $ sudo apt-get install -y openjdk-7-jdk maven
 ```
+
 - Compile MaryTTS (from the top-level folder)
 ```bash
 $ cd marytts
 $ mvn install
 ```
+
 - Run the server (replace `<VERSION>` with the appropriate version number, which may be suffixed with `-SNAPSHOT` e.g. `marytts-5.2-SNAPSHOT`)
 ```bash
 $ target/marytts-<VERSION>/bin/marytts-server
 ```
+
 - Connect to the server, either from a web browser at `localhost:59125`, or as follows
 ```bash
 $ target/marytts-<VERSION>/bin/marytts-client
 ```
+
 - From here, test that the synthesiser is working using the interface provided
+
 - Additional language/voice components can be installed
 ```bash
 $ target/marytts-<VERSION>/bin/marytts-component-installer
 ```
+
+- Download the Edinburgh Speech Tools and Festival from [here](http://www.cstr.ed.ac.uk/projects/festival/download.html)
+	- Note that there are 5 packages to download:
+		- `festival-<VERSION>-release.tar.gz`
+		- `festlex_CMU.tar.gz`
+		- `festlex_OALD.tar.gz`
+		- `festlex_POSLEX.tar.gz`
+		- `speech_tools-<VERSION>-release.tar.gz`
+	- The lexicon packages (`festlex`) should be unpacked after the Festival package at the same level as the `festival` folder, as the files try to install in `festival/dicts`.
+
+- Download Festvox from [here](http://festvox.org/download.html)
+	- Note that, at time of writing, it is recommended to download both the latest version (2.7) and the previous version (2.1), as a required file is missing in the newer version, but can be found in the older.
 
 
 
