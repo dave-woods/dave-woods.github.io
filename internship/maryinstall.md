@@ -26,9 +26,11 @@
 
 ##Step by step installation from scratch on Linux:
 - Install git
-		$ sudo apt-get install -y git
+    $ sudo apt-get install -y git
 - Clone the repository
+```bash
 		$ git clone https://github.com/marytts/marytts.git
+```
 - Install Java JDK 7 and Maven
 		$ sudo apt-get install -y openjdk-7-jdk maven
 - Compile MaryTTS (from the top-level folder)
