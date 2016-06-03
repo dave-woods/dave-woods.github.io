@@ -39,4 +39,8 @@ header {
         header .header-positioning .site-nav ul li:last-child {
           margin-bottom: 0; }
 
+@media (max-width: 640px) {
+  header {
+    display: none; } }
+
 /*# sourceMappingURL=header.css.map */
