@@ -34,6 +34,9 @@
 					<li>
 						<a href="/internship/reports">Internship Reports</a>
 					</li>
+					<li>
+						<a href="/internship/vis">Internship AudioVis</a>
+					</li>
 				</ul>
 			</nav>
 		</div>

@@ -207,6 +207,17 @@ header {
     z-index: 3; }
     .intern-vis-wrap #audio-info #audio-title {
       font-weight: bold; }
+  .intern-vis-wrap #utterance-text {
+    color: #cf4111;
+    font-weight: bold;
+    margin-left: 20px;
+    margin-right: 20px; }
+  .intern-vis-wrap #text {
+    color: #333;
+    display: block;
+    margin: 10px 30px auto 30px;
+    font-style: italic;
+    font-weight: lighter; }
   .intern-vis-wrap #label {
     margin-top: 20px;
     white-space: pre-line;
@@ -235,5 +246,36 @@ header {
       line-height: 150%; }
     .intern-vis-wrap #kb-ctrls:hover #kb-ctrls-tooltip {
       display: block; }
+  .intern-vis-wrap #feedback-btns {
+    margin: 20px auto;
+    width: 50%;
+    display: flex;
+    justify-content: space-around; }
+    .intern-vis-wrap #feedback-btns .feedback-btn {
+      cursor: pointer;
+      width: 100px;
+      padding: 5px;
+      border-radius: 5px;
+      color: white;
+      font-weight: bold;
+      text-align: center;
+      box-shadow: 0 0 15px 0px rgba(0, 0, 0, 0.5);
+      transition: all 0.05s ease-in-out; }
+      .intern-vis-wrap #feedback-btns .feedback-btn:hover {
+        box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.5); }
+      .intern-vis-wrap #feedback-btns .feedback-btn:active {
+        box-shadow: 0 0 15px 0px rgba(0, 0, 0, 0.5);
+        transform: translateY(1px); }
+    .intern-vis-wrap #feedback-btns #good {
+      background-color: green; }
+    .intern-vis-wrap #feedback-btns #bad {
+      background-color: red; }
+  .intern-vis-wrap .label-question {
+    width: 50%;
+    margin: auto;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid black;
+    text-align: center; }
 
 /*# sourceMappingURL=main.css.map */

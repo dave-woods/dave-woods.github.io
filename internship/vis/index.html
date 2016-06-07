@@ -33,6 +33,9 @@
 					<li>
 						<a href="/internship/reports">Internship Reports</a>
 					</li>
+					<li>
+						<a href="/internship/vis">Internship AudioVis</a>
+					</li>
 				</ul>
 			</nav>
 		</div>
@@ -40,6 +43,7 @@
 	<div class="intern-vis-wrap">
 		<div class="strip">
 			<div id="waveform"></div>
+			<div id="label"></div>
 			<div id="audio-info"><span id="audio-title">Title</span><span><span id="audio-position">0.000</span> / <span id="audio-duration">0.000</span></span></div>
 			<div id="play-btn">Click to play/pause</div>
 			<div id="kb-ctrls">
@@ -53,8 +57,9 @@
 			</div>
 		</div>
 		<div class="strip">
-			<div id="text"></div>
-			<div id="label"></div>
+			<div id="utterance-text">Utterance: <span id="text"></span></div>
+			<p class="label-question">How was the label alignment?</p>
+			<div id="feedback-btns"><div class="feedback-btn" id="good">Good</div><div class="feedback-btn" id="bad">Bad</div></div>
 		</div>
 	</div>
 </body>
