@@ -1,0 +1,52 @@
+$text-color: #333
+$text-color-light1: #666
+$text-color-light2: #999
+$button-color: #2493DA
+$main-text-color: #cf4111
+$header-bg-color: #ccc
+$strip-color1: honeydew
+$strip-color2: moccasin
+
+\:root
+	font:
+		family: arial
+		size: 16px
+	color: $text-color
+
+body
+	margin: 0
+	display: flex
+
+a
+	font:
+		family: arial
+		size: 16px
+	color: $text-color
+	&:hover
+		color: $text-color-light1
+	&[disabled]
+		color: $text-color-light2
+		cursor: default
+		pointer-events: none
+
+.strip
+	position: relative
+	width: 100%
+	padding: 20px 0px
+	margin: 0
+
+	p
+		margin: 0 20px 10px 20px
+		&:last-of-type
+			margin-bottom: 0
+
+	&:nth-of-type(odd)
+		background-color: $strip-color1
+	&:nth-of-type(even)
+		background-color: $strip-color2
+
+.index-wrap, .error-wrap, .intern-vis-wrap
+	display: flex
+	min-height: 100vh
+	flex-direction: column
+	flex: 1

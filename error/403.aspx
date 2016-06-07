@@ -1,3 +1,4 @@
+<% Response.StatusCode = 403 %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +11,8 @@
 <body>
 	<header>
 		<div class="header-positioning">
-			<h1 class="header-name">Reports</h1>
+			<h1 class="header-name">Error: 403</h1>
+			<h3>Page not accessible</h3>
 
 			<nav class="site-nav">
 				<ul>
@@ -36,37 +38,8 @@
 			</nav>
 		</div>
 	</header>
-	<div class="intern-report-wrap">
-		<div class="strip">
-			<!-- Temporaririly do this manually, eventually do this with jQuery? -->
-			<ul class="report-list">
-				<li>
-					<a href="30-05-16.html">30-05-16</a>
-				</li>
-				<li>
-					<a href="31-05-16.html">31-05-16</a>
-				</li>
-				<li>
-					<a href="01-06-16.html">01-06-16</a>
-				</li>
-				<li>
-					<a href="02-06-16.html">02-06-16</a>
-				</li>
-				<li>
-					<a href="03-06-16.html">03-06-16</a>
-				</li>
-				<li>
-					<a href="07-06-16.html">07-06-16</a>
-				</li>
-			</ul>
-		</div>
-		<div class="strip">
-			<ul class="report-list">
-				<li>
-					<a target="_blank" href="https://github.com/dave-woods/dave-woods.github.io/blob/master/internship/maryinstall.md">Installing and Using MaryTTS</a>
-				</li>
-			</ul>
-		</div>
+	<div class="error-wrap">
+		<p>Uh oh...</p>
 	</div>
 </body>
 </html>
