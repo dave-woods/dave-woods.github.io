@@ -127,7 +127,7 @@ $(document).ready(function(){
 				lb = timings[lbpos++].lab;
 				var perc = ct / wavesurfer.getDuration().toFixed(3) * 100;
 				$(".intern-vis-wrap #label").append("<span style='position:absolute; left:" 
-					+ (perc - 0.5) + "%; top:50%;'>" + lb + "</span");
+					+ (perc - 0.5) + "%; top:50%;z-index:6'>" + lb + "</span");
 			}
 		});
 	} // endif wavesurfer loaded

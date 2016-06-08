@@ -44,9 +44,15 @@
 	</header>
 	<div class="intern-report-wrap">
 		<div class="report">
-			<p>Today began with trying to once again fire up the MaryTTS voice building processes, using now the <em>blizzard</em> corpus of data that I had gotten access to on Friday. As I mentioned that day, this corpus is a lot larger than what I was previously working with, at 4,406 data files.</p>
+			<p>Today began with trying to once again fire up the MaryTTS voice building processes, using now the <em>blizzard</em> corpus of data that I had gotten access to on Friday. As I mentioned that day, this corpus is a lot larger than what I was previously working with, at 4,406 data files. Due to this, I immediately ran into an issue whereby the VM I was working on ran out of space to process the files. Even removing all of the previous data from the test voice was not enough.</p>
+			<p>Luckily, Joao was able to help me out by allowing me access to the /opt/ directory on the VM, and subsequently creating a subfolder there which I had full permissions to, so that I could use that location as my base directory for working with MaryTTS and building voices.</p>
+			<p>At this point, I set the EHMMlabeller in motion to begin working through the new corpus. In the meantime, I began working on a webpage for visualising audio files and checking whether the label alignment on them was good or not. I used a jQuery plugin called <a href="http://wavesurfer-js.org">wavesurfer.js</a> to display the waveform (though this will only work on modern browsers) and play the audio. I set it up so that, for now, it would sit on my own machine and be served with IIS. Because of this, only two audio files were available, for testing purposes.</p>
+			<p>I got the basics hashed out, so that it displayed and played the audio, showed the name of the file, and the duration and current position. I also added some keyboard controls for easier navigation of the audio clip. Additionally, I set up the text and labels to display below the waveform.</p>
+			<p>In the afternoon, I went over to the Westland Square office for the weekly meeting, which unfortunately meant I had to close the EHMM process in order to bring my laptop with me. Subsequently, nobody appeared for the meeting, so I went in to talk to Joao instead. I explained to him what I had done and also how I'd had to shut down the labelling, and he showed me a program called <code>screen</code> for Linux, which could be used to allow a process to continue, even if the user logs out of the machine.</p>
+			<p>With this new knowledge, I returned to my desk and started the labelling running again, and continued to work on the visualisation. Using JavaScript, I got the labels to display under the waveform at the timestamp associated with them.</p>
+			<p>Unfortunately, something went wrong with the EHMM labelling process again, but when I went home, I let it run overnight, and achieved success that way.</p>
 		</div>
-		<div class="report-navigator"><a href="03-06-16.html">Previous report</a><a disabled href="#">Next report</a></div>
+		<div class="report-navigator"><a href="03-06-16.html">Previous report</a><a href="08-06-16.html">Next report</a></div>
 	</div>
 </body>
 </html>

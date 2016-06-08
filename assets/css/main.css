@@ -261,7 +261,7 @@ header {
       display: block; }
   .intern-vis-wrap #feedback-btns {
     margin: 20px auto;
-    width: 50%;
+    width: 60%;
     display: flex;
     justify-content: space-around; }
     .intern-vis-wrap #feedback-btns .feedback-btn {
