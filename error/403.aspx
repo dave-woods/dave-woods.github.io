@@ -5,6 +5,7 @@
 	<meta charset="UTF-8">
 	<title>Dave Woods</title>
 	<link rel="stylesheet" href="/assets/css/main.css"/>
+	<meta name="viewport" content="width=device-width" />
 	<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	<script src="/assets/js/main.js" type="text/javascript" charset="utf-8" async defer></script>
 </head>

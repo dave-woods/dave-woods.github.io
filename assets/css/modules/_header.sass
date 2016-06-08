@@ -1,6 +1,5 @@
 header
 	width: 175px
-	// padding: 20px 0
 	background:
 		color: $header-bg-color
 	position: relative
@@ -26,14 +25,10 @@ header
 
 		display: flex
 		flex-direction: column
-		// justify-content: center
 		background:
 			color: $header-bg-color
-			//image: url("../images/shore.jpg")
-			// size: cover
 		width: 175px
 		margin: 0
-		// z-index: 0
 		position: fixed
 		top: 0px
 		left: 0
@@ -51,6 +46,24 @@ header
 					&:last-child
 						margin-bottom: 0
 
-@media (max-width: 640px)
+@media screen and (max-width: 640px)
 	header
-		display: none
+		width: 100%
+		order: 2
+		.header-positioning
+			position: relative
+			width: 100%
+			flex-direction: row
+			h1, h3
+				display: none
+			.site-nav
+				ul
+					text-align: center
+					li
+						display: inline-block
+						padding: 10px
+			top: auto
+			left: auto
+			bottom: auto
+	body
+		flex-direction: column

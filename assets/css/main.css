@@ -48,15 +48,10 @@ h6 {
   margin: 2em auto; }
 
 section.about {
-  height: 500px;
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  align-items: center; }
+  flex-wrap: wrap; }
   section.about p {
-    background-color: pink;
-    width: 20%; }
+    background-color: pink; }
 
 section.websites {
   height: 350px; }
@@ -128,9 +123,27 @@ header {
         header .header-positioning .site-nav ul li:last-child {
           margin-bottom: 0; }
 
-@media (max-width: 640px) {
+@media screen and (max-width: 640px) {
   header {
-    display: none; } }
+    width: 100%;
+    order: 2; }
+    header .header-positioning {
+      position: relative;
+      width: 100%;
+      flex-direction: row;
+      top: auto;
+      left: auto;
+      bottom: auto; }
+      header .header-positioning h1, header .header-positioning h3 {
+        display: none; }
+      header .header-positioning .site-nav ul {
+        text-align: center; }
+        header .header-positioning .site-nav ul li {
+          display: inline-block;
+          padding: 10px; }
+
+  body {
+    flex-direction: column; } }
 .intern-report-wrap {
   background-color: #ddd;
   padding: 20px;
@@ -277,5 +290,10 @@ header {
     padding-top: 20px;
     border-top: 1px solid black;
     text-align: center; }
+  .intern-vis-wrap #clip-nav {
+    display: flex;
+    justify-content: space-around; }
+    .intern-vis-wrap #clip-nav div {
+      cursor: pointer; }
 
 /*# sourceMappingURL=main.css.map */
