@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Dave Woods</title>
+	<link rel="stylesheet" href="/assets/css/main.css"/>
+	<meta name="viewport" content="width=device-width" />
+	<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script src="/assets/js/main.js" type="text/javascript" charset="utf-8" async defer></script>
+</head>
+<body>
+	<header>
+
+		<div class="header-positioning">
+			<h1 class="header-name">Internship Report</h1>
+			<h3>9th June 2016</h3>
+
+			<nav class="site-nav">
+				<ul>
+					<li>
+						<a href="/">Home</a>
+					</li>
+					<li>
+						<a href="#about">About</a>
+					</li>
+					<li>
+						<a href="#projects">Projects</a>
+					</li>
+					<li>
+						<a href="#papers">Papers</a>
+					</li>
+					<li>
+						<a href="#contact">Contact</a>
+					</li>
+					<li>
+						<a href="/internship/reports">Internship Reports</a>
+					</li>
+					<li>
+						<a href="/internship/vis">Internship AudioVis</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+	<div class="intern-report-wrap">
+		<div class="report">
+			<p>As it turned out, using <code>screen</code> did not work for me yesterday. Luckily, I discovered this quite early yesterday evening, and also found another command I could use to keep the process running when I logged out of the session, <code>nohup</code>, which did work for me, provided I used the command line and not the java wrapper. So I ran the make data step again overnight, using that helper command. This morning, it seemed that it had completed the majority of the work, but had crashed at a point after composing the training data. So I set it to skip the steps already completed, and ran the command again to see if it would run into the same issue, but this time I made sure that <code>stderr</code> would output to the logfile in order to better debug, as necessary.</p>
+			<p>As it turned out, the error output wasn't all that helpful, as it said that it had failed due to a temp directory missing. On a guess, I decided to try the java wrapper version again, in case this was something that was created in the java runtime. That seemed to do the trick, and the make data process completed at last. Next, it was time to make the voice itself, for which I decided to use <code>nohup</code> again, as the documentation recommends running this step from the command line, and when I reached this step with the training data, it took quite a long time, so I expected this to take even longer.</p>
+			<p>While this was running, I continued working on the visualisation page, adding a way to select the file to be displayed, and a few more keyboard controls.</p>
+		</div>
+		<div class="report-navigator"><a href="08-06-16.html">Previous report</a><a disabled href="#">Next report</a></div>
+	</div>
+</body>
+</html>

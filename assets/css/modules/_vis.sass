@@ -23,7 +23,7 @@
 			transform: translateY(1px)
 
 	#audio-info
-		height: 40px
+		min-height: 40px
 		text-align: right
 		display: flex
 		flex-direction: column
@@ -35,8 +35,39 @@
 		color: $main-text-color
 		z-index: 3
 
+		#filesearch
+			display: none
+			z-index: 4
+			position: absolute
+			right: 0
+			top: 0
+			#filesearch-tb
+				border: 1px solid $text-color-light2
+				border-radius: 5px 5px 0 0
+				padding: 5px
+				background-color: white
+				&:focus
+					outline: none
+
+			#filesearch-sb
+				display: flex
+				background-color: white
+				flex-direction: column
+				border-radius: 0 0 5px 5px
+				max-height: 200px
+				overflow-y: scroll
+				span
+					background-color: white
+					padding: 5px
+					cursor: pointer
+					&:last-child
+						border-radius: 0 0 5px 5px
+					&:hover
+						background-color: $text-color-light2
+
 		#audio-title
 			font-weight: bold
+			cursor: pointer
 
 	#utterance-text
 		color: $main-text-color
@@ -52,12 +83,31 @@
 		font-weight: lighter
 
 	#label
+		// position: absolute
 		margin-top: 20px
 		white-space: pre-line
 		font-family: monospace
-		font-size: 0.8rem
-		// span
-		// 	border-left: 1px solid black
+		font-size: 0.75rem
+		cursor: default
+		// overflow-x: scroll
+		span
+			position: absolute
+			top: 50%
+			z-index: 6
+		span:hover
+			&::before
+				text-align: center
+				font-size: 2rem
+				width: 2rem
+				border: 1px solid $text-color-light2
+				padding: 5px
+				border-radius: 5px
+				position: absolute
+				bottom: 1rem
+				left: -1rem
+				display: block
+				content: attr(data-ipa)
+				background-color: white
 
 	#kb-ctrls
 		font-size: 0.6rem

@@ -207,7 +207,7 @@ header {
       box-shadow: 0 0 15px 0px rgba(0, 0, 0, 0.5);
       transform: translateY(1px); }
   .intern-vis-wrap #audio-info {
-    height: 40px;
+    min-height: 40px;
     text-align: right;
     display: flex;
     flex-direction: column;
@@ -218,8 +218,37 @@ header {
     margin: 10px;
     color: #cf4111;
     z-index: 3; }
+    .intern-vis-wrap #audio-info #filesearch {
+      display: none;
+      z-index: 4;
+      position: absolute;
+      right: 0;
+      top: 0; }
+      .intern-vis-wrap #audio-info #filesearch #filesearch-tb {
+        border: 1px solid #999;
+        border-radius: 5px 5px 0 0;
+        padding: 5px;
+        background-color: white; }
+        .intern-vis-wrap #audio-info #filesearch #filesearch-tb:focus {
+          outline: none; }
+      .intern-vis-wrap #audio-info #filesearch #filesearch-sb {
+        display: flex;
+        background-color: white;
+        flex-direction: column;
+        border-radius: 0 0 5px 5px;
+        max-height: 200px;
+        overflow-y: scroll; }
+        .intern-vis-wrap #audio-info #filesearch #filesearch-sb span {
+          background-color: white;
+          padding: 5px;
+          cursor: pointer; }
+          .intern-vis-wrap #audio-info #filesearch #filesearch-sb span:last-child {
+            border-radius: 0 0 5px 5px; }
+          .intern-vis-wrap #audio-info #filesearch #filesearch-sb span:hover {
+            background-color: #999; }
     .intern-vis-wrap #audio-info #audio-title {
-      font-weight: bold; }
+      font-weight: bold;
+      cursor: pointer; }
   .intern-vis-wrap #utterance-text {
     color: #cf4111;
     font-weight: bold;
@@ -235,7 +264,25 @@ header {
     margin-top: 20px;
     white-space: pre-line;
     font-family: monospace;
-    font-size: 0.8rem; }
+    font-size: 0.75rem;
+    cursor: default; }
+    .intern-vis-wrap #label span {
+      position: absolute;
+      top: 50%;
+      z-index: 6; }
+    .intern-vis-wrap #label span:hover::before {
+      text-align: center;
+      font-size: 2rem;
+      width: 2rem;
+      border: 1px solid #999;
+      padding: 5px;
+      border-radius: 5px;
+      position: absolute;
+      bottom: 1rem;
+      left: -1rem;
+      display: block;
+      content: attr(data-ipa);
+      background-color: white; }
   .intern-vis-wrap #kb-ctrls {
     font-size: 0.6rem;
     position: absolute;
