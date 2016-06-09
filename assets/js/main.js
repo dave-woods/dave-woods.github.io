@@ -25,7 +25,7 @@ $(document).ready(function(){
 	// }
 
 	var lb = "_"; // to be skipped
-	var lbpos = 0; // to be skipped
+	var lbpos = 1; // to be skipped
 	var keys = {};
 	var timings = [];
 	var path = "/assets/audio/";
@@ -61,6 +61,8 @@ $(document).ready(function(){
 				e.preventDefault();
 			keys[e.which] = true;
 		});
+
+
 
 		$(document).keyup(function(e){
 			delete keys[e.which];
@@ -130,11 +132,14 @@ $(document).ready(function(){
 					if (index != 0)
 					{
 						var v = val.split(" ");
-						var o = {
-							"time" :(Number(v[0]).toFixed(3)),
-							"lab": v[2]
+						if (v.length >= 2)
+						{
+							var o = {
+								"time" :(Number(v[0]).toFixed(3)),
+								"lab": v[2]
+							}
+							timings.push(o);
 						}
-						timings.push(o);
 					}
 				});
 			}, "text");
@@ -144,17 +149,20 @@ $(document).ready(function(){
 			var ct = wavesurfer.getCurrentTime().toFixed(3);
 			$("#audio-position").text(ct);
 			
-			if (lbpos <= timings.length && ct > timings[lbpos].time && ct < timings[lbpos + 1].time)
-			{
-				lb = timings[lbpos++].lab;
-				// var perc = ct / wavesurfer.getDuration().toFixed(3) * 100;
-				// $(".intern-vis-wrap #label").append("<span style='position:absolute; left:" 
-				// 	+ (perc - 0.5) + "%; top:50%;z-index:6' data-ipa='" + xsa_ipa(lb) + "'>" + lb + "</span");
+			if (lbpos < timings.length - 1 && ct > timings[lbpos - 1].time && ct < timings[lbpos].time)
+			{	
+				lb = timings[lbpos].lab;
 				var perc = ct / wavesurfer.getDuration().toFixed(3) * $("canvas:first").width();
 				$(".intern-vis-wrap #label").append("<span style='left:" 
-					+ (perc - 0.5) + "px;' data-ipa='" + xsa_ipa(lb) + "'>" + lb + "</span");
+					+ (perc - 0.5) + "px;' data-ipa='" + xsa_ipa(lb) + "' data-start='" + timings[lbpos - 1].time + "' data-end='" + timings[lbpos++].time + "'>" + lb + "</span");
+
+				$(".intern-vis-wrap #label span").on("click", function(){
+					// alert("clicked");
+					wavesurfer.play($(this).data("start"), $(this).data("end"));
+				});
 			}
 		});
+
 
 		$("#audio-title").on("click", function(){
 			$("#filesearch").fadeIn(250, function(){
@@ -170,7 +178,11 @@ $(document).ready(function(){
 				});
 			}
 		});
-		var bnlist = ["arctic_a0566", "arctic_a0567"];
+		var bnlist = [
+		"arctic_a0566", "arctic_a0567", "arctic_a0566", "arctic_a0567",
+		"arctic_a0566", "arctic_a0567", "arctic_a0566", "arctic_a0567",
+		"arctic_a0566", "arctic_a0567", "arctic_a0566", "arctic_a0567",
+		"arctic_a0566", "arctic_a0567", "arctic_a0566", "arctic_a0567"];
 		$.each(bnlist, function(i, bn){
 			$("#filesearch-sb").append("<span>" + bn + "</span>");
 		});

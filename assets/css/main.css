@@ -220,7 +220,7 @@ header {
     z-index: 3; }
     .intern-vis-wrap #audio-info #filesearch {
       display: none;
-      z-index: 4;
+      z-index: 5;
       position: absolute;
       right: 0;
       top: 0; }
@@ -228,17 +228,20 @@ header {
         border: 1px solid #999;
         border-radius: 5px 5px 0 0;
         padding: 5px;
-        background-color: white; }
+        background-color: white;
+        z-index: 5; }
         .intern-vis-wrap #audio-info #filesearch #filesearch-tb:focus {
           outline: none; }
       .intern-vis-wrap #audio-info #filesearch #filesearch-sb {
+        z-index: 5;
         display: flex;
         background-color: white;
         flex-direction: column;
         border-radius: 0 0 5px 5px;
         max-height: 200px;
-        overflow-y: scroll; }
+        overflow-y: auto; }
         .intern-vis-wrap #audio-info #filesearch #filesearch-sb span {
+          z-index: 5;
           background-color: white;
           padding: 5px;
           cursor: pointer; }
@@ -265,21 +268,24 @@ header {
     white-space: pre-line;
     font-family: monospace;
     font-size: 0.75rem;
-    cursor: default; }
+    cursor: default;
+    z-index: 3; }
     .intern-vis-wrap #label span {
       position: absolute;
       top: 50%;
-      z-index: 6; }
+      z-index: 3;
+      cursor: pointer; }
     .intern-vis-wrap #label span:hover::before {
       text-align: center;
       font-size: 2rem;
-      width: 2rem;
+      min-width: 2rem;
       border: 1px solid #999;
       padding: 5px;
       border-radius: 5px;
       position: absolute;
       bottom: 1rem;
       left: -1rem;
+      margin: auto;
       display: block;
       content: attr(data-ipa);
       background-color: white; }
