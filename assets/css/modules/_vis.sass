@@ -1,6 +1,4 @@
 .intern-vis-wrap
-	#waveform:
-		cursor: default !important
 
 	#play-btn
 		background-color: $button-color
@@ -85,37 +83,54 @@
 		font-style: italic
 		font-weight: lighter
 
-	#label
-		// position: absolute
-		margin-top: 20px
-		white-space: pre-line
-		font-family: monospace
-		font-size: 0.75rem
-		cursor: default
-		// overflow-x: scroll
-		z-index: 3
-		span
-			position: absolute
-			top: 50%
+		// &::before
+		// 	content: "[EDIT]"
+
+	#wavelabel-wrap
+		overflow-x: auto
+
+		#waveform:
+			cursor: default !important
+			overflow-x: hidden
+
+		#labels
+			margin-top: 20px
+			white-space: pre-line
+			font-family: monospace
+			font-size: 0.75rem
+			cursor: default
+			// width: 100%
+			//overflow-x: auto
 			z-index: 3
-			cursor: pointer
-		span:hover
-			&::before
-				text-align: center
-				font-size: 2rem
-				min-width: 2rem
-				border: 1px solid $text-color-light2
-				padding: 5px
-				border-radius: 5px
-				position: absolute
-				bottom: 1rem
-				// margin-left: 1rem
-				left: -1rem
-				// vertical-align: middle
-				margin: auto
-				display: block
-				content: attr(data-ipa)
-				background-color: white
+			display: flex
+			text-align: center
+			wrap: nowrap
+			justify-content: space-around
+			position: relative
+
+			.label
+				top: 50%
+				z-index: 3
+				cursor: pointer
+				width: 100%
+				flex: 1
+
+				&:hover
+					background-color: $main-text-color
+
+					&::before
+						text-align: center
+						font-size: 2rem
+						min-width: 2rem
+						border: 1px solid $text-color-light2
+						padding: 5px
+						border-radius: 5px
+						position: absolute
+						bottom: 1.5rem
+						left: 50%
+						content: attr(data-ipa)
+						background-color: white
+				
 
 	#kb-ctrls
 		font-size: 0.6rem

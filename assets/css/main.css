@@ -185,168 +185,176 @@ header {
   .intern-report-wrap .report-list {
     list-style: none; }
 
-.intern-vis-wrap {
-  #waveform-cursor: default !important; }
-  .intern-vis-wrap #play-btn {
-    background-color: #2493DA;
-    width: 200px;
-    height: 50px;
-    color: white;
-    cursor: pointer;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 20px auto;
-    border-radius: 5px;
+.intern-vis-wrap #play-btn {
+  background-color: #2493DA;
+  width: 200px;
+  height: 50px;
+  color: white;
+  cursor: pointer;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px auto;
+  border-radius: 5px;
+  box-shadow: 0 0 15px 0px rgba(0, 0, 0, 0.5);
+  transition: all 0.05s ease-in-out; }
+  .intern-vis-wrap #play-btn:hover {
+    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.5); }
+  .intern-vis-wrap #play-btn:active {
     box-shadow: 0 0 15px 0px rgba(0, 0, 0, 0.5);
-    transition: all 0.05s ease-in-out; }
-    .intern-vis-wrap #play-btn:hover {
-      box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.5); }
-    .intern-vis-wrap #play-btn:active {
-      box-shadow: 0 0 15px 0px rgba(0, 0, 0, 0.5);
-      transform: translateY(1px); }
-  .intern-vis-wrap #audio-info {
-    min-height: 40px;
-    text-align: right;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    transform: translateY(1px); }
+.intern-vis-wrap #audio-info {
+  min-height: 40px;
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 10px;
+  color: #cf4111;
+  z-index: 3; }
+  .intern-vis-wrap #audio-info #filesearch {
+    display: none;
+    z-index: 5;
     position: absolute;
-    top: 0;
     right: 0;
-    margin: 10px;
-    color: #cf4111;
-    z-index: 3; }
-    .intern-vis-wrap #audio-info #filesearch {
-      display: none;
+    top: 0; }
+    .intern-vis-wrap #audio-info #filesearch #filesearch-tb {
+      border: 1px solid #999;
+      border-radius: 5px 5px 0 0;
+      padding: 5px;
+      background-color: white;
+      z-index: 5; }
+      .intern-vis-wrap #audio-info #filesearch #filesearch-tb:focus {
+        outline: none; }
+    .intern-vis-wrap #audio-info #filesearch #filesearch-sb {
       z-index: 5;
-      position: absolute;
-      right: 0;
-      top: 0; }
-      .intern-vis-wrap #audio-info #filesearch #filesearch-tb {
-        border: 1px solid #999;
-        border-radius: 5px 5px 0 0;
-        padding: 5px;
-        background-color: white;
-        z-index: 5; }
-        .intern-vis-wrap #audio-info #filesearch #filesearch-tb:focus {
-          outline: none; }
-      .intern-vis-wrap #audio-info #filesearch #filesearch-sb {
+      display: flex;
+      background-color: white;
+      flex-direction: column;
+      border-radius: 0 0 5px 5px;
+      max-height: 200px;
+      overflow-y: auto; }
+      .intern-vis-wrap #audio-info #filesearch #filesearch-sb span {
         z-index: 5;
-        display: flex;
         background-color: white;
-        flex-direction: column;
-        border-radius: 0 0 5px 5px;
-        max-height: 200px;
-        overflow-y: auto; }
-        .intern-vis-wrap #audio-info #filesearch #filesearch-sb span {
-          z-index: 5;
-          background-color: white;
-          padding: 5px;
-          cursor: pointer; }
-          .intern-vis-wrap #audio-info #filesearch #filesearch-sb span:last-child {
-            border-radius: 0 0 5px 5px; }
-          .intern-vis-wrap #audio-info #filesearch #filesearch-sb span:hover {
-            background-color: #999; }
-    .intern-vis-wrap #audio-info #audio-title {
-      font-weight: bold;
-      cursor: pointer; }
-  .intern-vis-wrap #utterance-text {
-    color: #cf4111;
+        padding: 5px;
+        cursor: pointer; }
+        .intern-vis-wrap #audio-info #filesearch #filesearch-sb span:last-child {
+          border-radius: 0 0 5px 5px; }
+        .intern-vis-wrap #audio-info #filesearch #filesearch-sb span:hover {
+          background-color: #999; }
+  .intern-vis-wrap #audio-info #audio-title {
     font-weight: bold;
-    margin-left: 20px;
-    margin-right: 20px; }
-  .intern-vis-wrap #text {
-    color: #333;
-    display: block;
-    margin: 10px 30px auto 30px;
-    font-style: italic;
-    font-weight: lighter; }
-  .intern-vis-wrap #label {
+    cursor: pointer; }
+.intern-vis-wrap #utterance-text {
+  color: #cf4111;
+  font-weight: bold;
+  margin-left: 20px;
+  margin-right: 20px; }
+.intern-vis-wrap #text {
+  color: #333;
+  display: block;
+  margin: 10px 30px auto 30px;
+  font-style: italic;
+  font-weight: lighter; }
+.intern-vis-wrap #wavelabel-wrap {
+  overflow-x: auto;
+  #waveform-cursor: default !important;
+  #waveform-overflow-x: hidden; }
+  .intern-vis-wrap #wavelabel-wrap #labels {
     margin-top: 20px;
     white-space: pre-line;
     font-family: monospace;
     font-size: 0.75rem;
     cursor: default;
-    z-index: 3; }
-    .intern-vis-wrap #label span {
-      position: absolute;
+    z-index: 3;
+    display: flex;
+    text-align: center;
+    wrap: nowrap;
+    justify-content: space-around;
+    position: relative; }
+    .intern-vis-wrap #wavelabel-wrap #labels .label {
       top: 50%;
       z-index: 3;
-      cursor: pointer; }
-    .intern-vis-wrap #label span:hover::before {
-      text-align: center;
-      font-size: 2rem;
-      min-width: 2rem;
-      border: 1px solid #999;
-      padding: 5px;
-      border-radius: 5px;
-      position: absolute;
-      bottom: 1rem;
-      left: -1rem;
-      margin: auto;
-      display: block;
-      content: attr(data-ipa);
-      background-color: white; }
-  .intern-vis-wrap #kb-ctrls {
-    font-size: 0.6rem;
-    position: absolute;
-    right: 10px;
-    cursor: default; }
-    .intern-vis-wrap #kb-ctrls #kb-ctrls-tooltip {
-      position: absolute;
-      background-color: rgba(0, 0, 0, 0.7);
-      color: white;
-      font-size: 1.1em;
-      display: none;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      bottom: 125%;
-      right: 0;
-      padding: 5px;
-      border-radius: 5px;
-      border: solid 1px black;
-      width: 300%;
-      line-height: 150%; }
-    .intern-vis-wrap #kb-ctrls:hover #kb-ctrls-tooltip {
-      display: block; }
-  .intern-vis-wrap #feedback-btns {
-    margin: 20px auto;
-    width: 60%;
-    display: flex;
-    justify-content: space-around; }
-    .intern-vis-wrap #feedback-btns .feedback-btn {
       cursor: pointer;
-      width: 100px;
-      padding: 5px;
-      border-radius: 5px;
-      color: white;
-      font-weight: bold;
-      text-align: center;
+      width: 100%;
+      flex: 1; }
+      .intern-vis-wrap #wavelabel-wrap #labels .label:hover {
+        background-color: #cf4111; }
+        .intern-vis-wrap #wavelabel-wrap #labels .label:hover::before {
+          text-align: center;
+          font-size: 2rem;
+          min-width: 2rem;
+          border: 1px solid #999;
+          padding: 5px;
+          border-radius: 5px;
+          position: absolute;
+          bottom: 1.5rem;
+          left: 50%;
+          content: attr(data-ipa);
+          background-color: white; }
+.intern-vis-wrap #kb-ctrls {
+  font-size: 0.6rem;
+  position: absolute;
+  right: 10px;
+  cursor: default; }
+  .intern-vis-wrap #kb-ctrls #kb-ctrls-tooltip {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    font-size: 1.1em;
+    display: none;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    bottom: 125%;
+    right: 0;
+    padding: 5px;
+    border-radius: 5px;
+    border: solid 1px black;
+    width: 300%;
+    line-height: 150%; }
+  .intern-vis-wrap #kb-ctrls:hover #kb-ctrls-tooltip {
+    display: block; }
+.intern-vis-wrap #feedback-btns {
+  margin: 20px auto;
+  width: 60%;
+  display: flex;
+  justify-content: space-around; }
+  .intern-vis-wrap #feedback-btns .feedback-btn {
+    cursor: pointer;
+    width: 100px;
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    box-shadow: 0 0 15px 0px rgba(0, 0, 0, 0.5);
+    transition: all 0.05s ease-in-out; }
+    .intern-vis-wrap #feedback-btns .feedback-btn:hover {
+      box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.5); }
+    .intern-vis-wrap #feedback-btns .feedback-btn:active {
       box-shadow: 0 0 15px 0px rgba(0, 0, 0, 0.5);
-      transition: all 0.05s ease-in-out; }
-      .intern-vis-wrap #feedback-btns .feedback-btn:hover {
-        box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.5); }
-      .intern-vis-wrap #feedback-btns .feedback-btn:active {
-        box-shadow: 0 0 15px 0px rgba(0, 0, 0, 0.5);
-        transform: translateY(1px); }
-    .intern-vis-wrap #feedback-btns #good {
-      background-color: green; }
-    .intern-vis-wrap #feedback-btns #bad {
-      background-color: red; }
-  .intern-vis-wrap .label-question {
-    width: 50%;
-    margin: auto;
-    margin-top: 20px;
-    padding-top: 20px;
-    border-top: 1px solid black;
-    text-align: center; }
-  .intern-vis-wrap #clip-nav {
-    display: flex;
-    justify-content: space-around; }
-    .intern-vis-wrap #clip-nav div {
-      cursor: pointer; }
+      transform: translateY(1px); }
+  .intern-vis-wrap #feedback-btns #good {
+    background-color: green; }
+  .intern-vis-wrap #feedback-btns #bad {
+    background-color: red; }
+.intern-vis-wrap .label-question {
+  width: 50%;
+  margin: auto;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid black;
+  text-align: center; }
+.intern-vis-wrap #clip-nav {
+  display: flex;
+  justify-content: space-around; }
+  .intern-vis-wrap #clip-nav div {
+    cursor: pointer; }
 
 /*# sourceMappingURL=main.css.map */

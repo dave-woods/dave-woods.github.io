@@ -7,7 +7,7 @@ $(document).ready(function(){
 		}, 2000);
 	});
 
-	$(".feefback-btn").on("click", function(){
+	$(".feedback-btn").on("click", function(){
 		var d = {id: basename, content: $(this).attr("id")};
 		//writeToFile(d);
 	});
@@ -24,13 +24,7 @@ $(document).ready(function(){
 	// 	});
 	// }
 
-	var lb = "_"; // to be skipped
-	var lbpos = 1; // to be skipped
-	var keys = {};
-	var timings = [];
-	var path = "/assets/audio/";
-	var basename = "arctic_a0566";
-	var playbackRate = 1.0;
+	
 
 	if (typeof WaveSurfer !== 'undefined')
 	{
@@ -41,7 +35,12 @@ $(document).ready(function(){
 			progressColor: "#cf4111"
 		});
 		
-		var pxPerSec = 200;
+		var keys = {};
+		var path = "/assets/audio/";
+		var basename = "arctic_a0566";//"blizzard2016-enUKfls-0156";
+		var playbackRate = 1.0;
+		var pxPerSec = 50;
+		var duration = 0;
 
 		wavesurfer.load(path + basename + ".wav");
 		
@@ -61,8 +60,6 @@ $(document).ready(function(){
 				e.preventDefault();
 			keys[e.which] = true;
 		});
-
-
 
 		$(document).keyup(function(e){
 			delete keys[e.which];
@@ -84,7 +81,7 @@ $(document).ready(function(){
 						wavesurfer.seekTo(0);
 					else
 						wavesurfer.skip(-offset);
-					$("#audio-position").text(wavesurfer.getCurrentTime().toFixed(3));
+					$("#audio-position").text(parseFloat(wavesurfer.getCurrentTime()).toFixed(3));
 				}
 				else if(e.which == 39)
 				{
@@ -95,7 +92,7 @@ $(document).ready(function(){
 						wavesurfer.seekTo(1);
 					else
 						wavesurfer.skip(offset);
-					$("#audio-position").text(wavesurfer.getCurrentTime().toFixed(3));
+					$("#audio-position").text(parseFloat(wavesurfer.getCurrentTime()).toFixed(3));
 				}
 				else if(e.which == 90)
 				{
@@ -106,69 +103,72 @@ $(document).ready(function(){
 				else if(e.which == 219)
 				{
 					e.preventDefault();
-					wavesurfer.zoom(pxPerSec < 250 ? pxPerSec : pxPerSec -= 50);
+					wavesurfer.zoom(pxPerSec < 50 ? pxPerSec : pxPerSec -= 50);
+					$("#wavelabel-wrap").width($("canvas:first").width());
 				}
 				else if(e.which == 221)
 				{
 					e.preventDefault();
 					wavesurfer.zoom(pxPerSec > 2000 ? pxPerSec : pxPerSec += 50);
+					$("#wavelabel-wrap").width($("canvas:first").width());
 				}
 			}
 		});
 
 		wavesurfer.on("ready", function(){
-			lb = "";
-			lbpos = 1; // skip the initial underscore
-			timings = [];
-			$(".intern-vis-wrap #label").html("");
+			duration = (wavesurfer.getDuration()).toFixed(3);
+			$(".intern-vis-wrap #labels").html("");
 			$("#audio-title").text(basename);
-			$("#audio-duration").text(wavesurfer.getDuration().toFixed(3));
+			$("#audio-duration").text(duration);
 			$.get(path + basename + ".txt", function(data){
 				$(".intern-vis-wrap #text").html("<p>" + data + "</p>");
 			}, "text");
 			$.get(path + basename + ".lab", function(data){
-				var d = data.split("\n");
-				$.each(d, function(index, val) {
-					if (index != 0)
+				var labelLines = data.split("\n");
+				var prevTime = 0.000;
+				$.each(labelLines, function(labelLineIndex, labelLine) {
+					if (!labelLine.startsWith("#")) // ignore comments
 					{
-						var v = val.split(" ");
-						if (v.length >= 2)
+						var ll = labelLine.split(" ");
+						if (ll.length > 2) // make sure the line is formatted as expected
 						{
-							var o = {
-								"time" :(Number(v[0]).toFixed(3)),
-								"lab": v[2]
+							var label = {
+								"time" :(parseFloat(ll[0]).toFixed(3)),
+								"lab": ll[2]
 							}
-							timings.push(o);
+
+							// temp fix
+							if (basename == "blizzard2016-enUKfls-0156")
+								label.time = (parseFloat(label.time) / 22.23) * 8.07;
+							
+							var labelWidth = (label.time - prevTime) / duration;
+							$(".intern-vis-wrap #labels").append("<div class='label' style='flex:" 
+								+ labelWidth + (label.lab == "_" ? ";visibility:hidden;" : ";") 
+								+ "' data-ipa='" + xsa_ipa(label.lab) + "' data-start='" + prevTime
+								+ "' data-end='" + label.time + "'>" + label.lab + "</div>");
+							prevTime = label.time;
+							$(".intern-vis-wrap #labels .label").on("click", function(){
+								wavesurfer.play(parseFloat($(this).data("start")), parseFloat($(this).data("end")));
+							});
 						}
 					}
-				});
-			}, "text");
-		});
-
+				}); // end loop over label lines
+			}, "text"); // end get label file
+		}); // end on wavesurfer ready
+		
+		// Update current time on-screen
 		wavesurfer.on("audioprocess", function(){
-			var ct = wavesurfer.getCurrentTime().toFixed(3);
-			$("#audio-position").text(ct);
-			
-			if (lbpos < timings.length - 1 && ct > timings[lbpos - 1].time && ct < timings[lbpos].time)
-			{	
-				lb = timings[lbpos].lab;
-				var perc = ct / wavesurfer.getDuration().toFixed(3) * $("canvas:first").width();
-				$(".intern-vis-wrap #label").append("<span style='left:" 
-					+ (perc - 0.5) + "px;' data-ipa='" + xsa_ipa(lb) + "' data-start='" + timings[lbpos - 1].time + "' data-end='" + timings[lbpos++].time + "'>" + lb + "</span");
-
-				$(".intern-vis-wrap #label span").on("click", function(){
-					// alert("clicked");
-					wavesurfer.play($(this).data("start"), $(this).data("end"));
-				});
-			}
+			$("#audio-position").text(parseFloat(wavesurfer.getCurrentTime()).toFixed(3));
 		});
 
-
+		// Open file searchbox
 		$("#audio-title").on("click", function(){
 			$("#filesearch").fadeIn(250, function(){
 				$("#filesearch-tb").focus();
 			});
 		});
+
+		// Quit file searching and hide searchbox
 		$("#filesearch").on("keyup focusout", function(e){
 			if((e.type == "keyup" && e.which == 27) || e.type == "focusout")
 			{
@@ -178,33 +178,40 @@ $(document).ready(function(){
 				});
 			}
 		});
-		var bnlist = [
+
+		// TODO: get files from server
+		var bnlist = [ "blizzard2016-enUKfls-0156",
 		"arctic_a0566", "arctic_a0567", "arctic_a0566", "arctic_a0567",
 		"arctic_a0566", "arctic_a0567", "arctic_a0566", "arctic_a0567",
 		"arctic_a0566", "arctic_a0567", "arctic_a0566", "arctic_a0567",
 		"arctic_a0566", "arctic_a0567", "arctic_a0566", "arctic_a0567"];
+		
+		// TODO: maybe only load from server when search query sent?
+		// Add files to searchable list
 		$.each(bnlist, function(i, bn){
 			$("#filesearch-sb").append("<span>" + bn + "</span>");
 		});
+
+		// Load selected files
 		$("#filesearch-sb span").on("click", function() {
 			loadWavefile($(this).text());
 		});
 
+		// Load a given file
 		function loadWavefile(filename)
 		{
 			basename = filename;
 			wavesurfer.load(path + basename + ".wav");
 		}
 
-		// :contains pseudo-selector defined below
+		// Filter selectable files based on user input
 		$("#filesearch-tb").keyup(function(){
 			$("#filesearch-sb span:contains(" + $("#filesearch-tb").val() + ")").show();
 			$("#filesearch-sb span:not(:contains(" + $("#filesearch-tb").val() + "))").hide();
 		});
-		// });
 
 		// create ":contains" pseudo-selector to make filtering better
-		$.expr[":"].contains = $.expr.createPseudo(function(arg) {
+		$.expr[":"].contains = $.expr.createPseudo(function(arg){
 			return function(elem) {
 				return $(elem).text().toUpperCase().indexOf(arg.toUpperCase()) >= 0;
 			};
