@@ -7,10 +7,7 @@ $(document).ready(function(){
 		}, 2000);
 	});
 
-	$(".feedback-btn").on("click", function(){
-		var d = {id: basename, content: $(this).attr("id")};
-		//writeToFile(d);
-	});
+
 
 	// function writeToFile(datain)
 	// {
@@ -32,7 +29,8 @@ $(document).ready(function(){
 			container: "#waveform",
 			cursorWidth: 0,
 			waveColor: "#ccc",
-			progressColor: "#cf4111"
+			progressColor: "#cf4111",
+			minPxPerSec: 10000
 		});
 		
 		var keys = {};
@@ -49,14 +47,66 @@ $(document).ready(function(){
 		});
 
 		$("#prev-clip").on("click", function(){
-			loadWavefile("arctic_a0566");
+			var i = bnlist.indexOf(basename);
+			loadWavefile(bnlist[i == 0 ? bnlist.length - 1 : i - 1]);
 		});
 		$("#next-clip").on("click", function(){
-			loadWavefile("arctic_a0567");
+			var i = bnlist.indexOf(basename);
+			loadWavefile(bnlist[i == bnlist.length - 1 ? 0 : i + 1]);
+		});
+
+		$(".feedback-btn").on("click", function(){
+			var id = $(this).attr("id");
+			var d = {id: basename, content: $(this).attr("id")};
+			//writeToFile(d);
+			if (id == "good")
+				$("#next-clip").trigger("click");
+			else
+			{
+				$("#bad-reason").fadeIn(400).focus();
+			}
+		});
+
+		$("#utterance-text small").on("click", replaceText);
+
+		function replaceText()
+		{
+			var ut = $("#text p").html();
+			var editableText = $("<textarea id='edit-utterance' style='width:100%'></textarea>");
+			editableText.val(ut);
+			$("#text p").replaceWith(editableText);
+			editableText.focus().on("blur keyup", function(e){
+				if ((e.type == "keyup" && (e.which == 27 || e.which == 13)) || e.type == "blur")
+					editableTextBlurred.call(e.target);
+			});
+		}
+
+		function editableTextBlurred()
+		{
+			var html = $(this).val();
+			var viewableText = $("<p>");
+			viewableText.html(html);
+			$(this).replaceWith(viewableText);
+		}
+
+		$("#bad-reason").on("keyup focusout", function(e){
+			if((e.type == "keyup" && e.which == 27) || e.type == "focusout")
+			{
+				e.preventDefault();
+				$("#bad-reason").fadeOut(400);
+			}
+			else if (e.which == 13 && $.trim($("#bad-reason").val()))
+			{
+				e.preventDefault();
+				$("#bad-reason").fadeOut(400, function(){
+					console.log($("#bad-reason").val());
+					$("#next-clip").trigger("click");
+				});
+			}
 		});
 
 		$(document).keydown(function(e){
-			if(!$("#filesearch-tb").is(':focus') && e.which == 32)
+			if(!$("#filesearch-tb, #bad-reason, #edit-utterance").is(':focus') && e.which == 32)
 				e.preventDefault();
 			keys[e.which] = true;
 		});
@@ -64,7 +114,7 @@ $(document).ready(function(){
 		$(document).keyup(function(e){
 			delete keys[e.which];
 
-			if (!$("#filesearch-tb").is(':focus'))
+			if (!$("#filesearch-tb, #bad-reason, #edit-utterance").is(':focus'))
 			{
 				var offset = 0.1;
 				if(e.which == 32)
@@ -94,6 +144,26 @@ $(document).ready(function(){
 						wavesurfer.skip(offset);
 					$("#audio-position").text(parseFloat(wavesurfer.getCurrentTime()).toFixed(3));
 				}
+				else if(e.which == 66)
+				{
+					e.preventDefault();
+					$("#bad").trigger("click");
+				}
+				else if(e.which == 71)
+				{
+					e.preventDefault();
+					$("#good").trigger("click");
+				}
+				else if(e.which == 188)
+				{
+					e.preventDefault();
+					$("#prev-clip").trigger("click");
+				}
+				else if(e.which == 190)
+				{
+					e.preventDefault();
+					$("#next-clip").trigger("click");
+				}
 				else if(e.which == 90)
 				{
 					e.preventDefault();
@@ -104,13 +174,11 @@ $(document).ready(function(){
 				{
 					e.preventDefault();
 					wavesurfer.zoom(pxPerSec < 50 ? pxPerSec : pxPerSec -= 50);
-					$("#wavelabel-wrap").width($("canvas:first").width());
 				}
 				else if(e.which == 221)
 				{
 					e.preventDefault();
 					wavesurfer.zoom(pxPerSec > 2000 ? pxPerSec : pxPerSec += 50);
-					$("#wavelabel-wrap").width($("canvas:first").width());
 				}
 			}
 		});
@@ -120,6 +188,7 @@ $(document).ready(function(){
 			$(".intern-vis-wrap #labels").html("");
 			$("#audio-title").text(basename);
 			$("#audio-duration").text(duration);
+			$("#audio-position").text("0.000");
 			$.get(path + basename + ".txt", function(data){
 				$(".intern-vis-wrap #text").html("<p>" + data + "</p>");
 			}, "text");
@@ -138,24 +207,33 @@ $(document).ready(function(){
 							}
 
 							// temp fix
-							if (basename == "blizzard2016-enUKfls-0156")
-								label.time = (parseFloat(label.time) / 22.23) * 8.07;
-							
+							if (basename.startsWith("blizzdir/blizzard2016-enUKfls-"))
+								label.time = (parseFloat(label.time) / parseFloat(labelLines[labelLines.length - 2].split(" ")[0])) * duration;
 							var labelWidth = (label.time - prevTime) / duration;
 							$(".intern-vis-wrap #labels").append("<div class='label' style='flex:" 
 								+ labelWidth + (label.lab == "_" ? ";visibility:hidden;" : ";") 
 								+ "' data-ipa='" + xsa_ipa(label.lab) + "' data-start='" + prevTime
 								+ "' data-end='" + label.time + "'>" + label.lab + "</div>");
 							prevTime = label.time;
-							$(".intern-vis-wrap #labels .label").on("click", function(){
-								wavesurfer.play(parseFloat($(this).data("start")), parseFloat($(this).data("end")));
-							});
 						}
 					}
 				}); // end loop over label lines
+				$(".intern-vis-wrap #labels .label").on("click", function(){
+					wavesurfer.play(parseFloat($(this).data("start")), parseFloat($(this).data("end")));
+				}).on("mouseenter", function(){
+					var s = parseFloat($(this).data("start"));
+					var e = parseFloat($(this).data("end"));
+
+					$("#waveform").append("<div class='wave-highlight' " +
+						"style='background-color:#999;position:absolute;height:"+
+						$("wave:first").height()+"px;top:20px;left:"
+						+(s/duration*100)+"%;width:"+((e-s)/duration*100)+"%'></div>");
+				}).on("mouseleave", function(){
+					$(".wave-highlight").remove();
+				});
 			}, "text"); // end get label file
 		}); // end on wavesurfer ready
-		
+
 		// Update current time on-screen
 		wavesurfer.on("audioprocess", function(){
 			$("#audio-position").text(parseFloat(wavesurfer.getCurrentTime()).toFixed(3));
@@ -180,11 +258,41 @@ $(document).ready(function(){
 		});
 
 		// TODO: get files from server
-		var bnlist = [ "blizzard2016-enUKfls-0156",
-		"arctic_a0566", "arctic_a0567", "arctic_a0566", "arctic_a0567",
-		"arctic_a0566", "arctic_a0567", "arctic_a0566", "arctic_a0567",
-		"arctic_a0566", "arctic_a0567", "arctic_a0566", "arctic_a0567",
-		"arctic_a0566", "arctic_a0567", "arctic_a0566", "arctic_a0567"];
+		var bnlist = [
+		"blizzdir/blizzard2016-enUKfls-1333",
+		"blizzdir/blizzard2016-enUKfls-1996",
+		"blizzdir/blizzard2016-enUKfls-2037",
+		"blizzdir/blizzard2016-enUKfls-2040",
+		"blizzdir/blizzard2016-enUKfls-2042",
+		"blizzdir/blizzard2016-enUKfls-2136",
+		"blizzdir/blizzard2016-enUKfls-2886",
+		"blizzdir/blizzard2016-enUKfls-2887",
+		"blizzdir/blizzard2016-enUKfls-2902",
+		"blizzdir/blizzard2016-enUKfls-3161",
+		"blizzdir/blizzard2016-enUKfls-3234",
+		"blizzdir/blizzard2016-enUKfls-3375",
+		"blizzdir/blizzard2016-enUKfls-3377",
+		"blizzdir/blizzard2016-enUKfls-3379",
+		"blizzdir/blizzard2016-enUKfls-3381",
+		"blizzdir/blizzard2016-enUKfls-3382",
+		"blizzdir/blizzard2016-enUKfls-3445",
+		"blizzdir/blizzard2016-enUKfls-3848",
+		"blizzdir/blizzard2016-enUKfls-3992",
+		"blizzdir/blizzard2016-enUKfls-3993",
+		"blizzdir/blizzard2016-enUKfls-3994",
+		"blizzdir/blizzard2016-enUKfls-4117",
+		"blizzdir/blizzard2016-enUKfls-4121",
+		"blizzdir/blizzard2016-enUKfls-4130",
+		"blizzdir/blizzard2016-enUKfls-4303",
+		"blizzdir/blizzard2016-enUKfls-4396",
+		"blizzdir/blizzard2016-enUKfls-4398",
+		"blizzdir/blizzard2016-enUKfls-4399",
+		"blizzdir/blizzard2016-enUKfls-4400",
+		"blizzdir/blizzard2016-enUKfls-4404",
+		"blizzdir/blizzard2016-enUKfls-0156",
+		"blizzdir/blizzard2016-enUKfls-1793",
+		"arctic_a0566", "arctic_a0567"
+		];
 		
 		// TODO: maybe only load from server when search query sent?
 		// Add files to searchable list

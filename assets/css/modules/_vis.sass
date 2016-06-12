@@ -1,24 +1,12 @@
 .intern-vis-wrap
+	display: flex
+	flex-direction: column
 
-	#play-btn
-		background-color: $button-color
-		width: 200px
-		height: 50px
-		color: white
-		cursor: pointer
-		text-align: center
+	.strip:first-of-type
+		flex: 1
 		display: flex
-		align-items: center
-		justify-content: center
-		margin: 20px auto
-		border-radius: 5px
-		box-shadow: 0 0 15px 0px rgba(0,0,0,0.5)
-		transition: all 0.05s ease-in-out
-		&:hover
-			box-shadow: 0 0 20px 0px rgba(0,0,0,0.5)
-		&:active
-			box-shadow: 0 0 15px 0px rgba(0,0,0,0.5)
-			transform: translateY(1px)
+		flex-direction: column
+		justify-content: space-around
 
 	#audio-info
 		min-height: 40px
@@ -75,6 +63,11 @@
 		font-weight: bold
 		margin-left: 20px
 		margin-right: 20px
+		small
+			font-size: 0.6rem
+			cursor: pointer
+			&:hover
+				text-decoration: underline
 
 	#text
 		color: $text-color
@@ -83,24 +76,23 @@
 		font-style: italic
 		font-weight: lighter
 
-		// &::before
-		// 	content: "[EDIT]"
-
 	#wavelabel-wrap
 		overflow-x: auto
+		max-width: 100%
+		// flex: 1
 
-		#waveform:
+		#waveform
 			cursor: default !important
-			overflow-x: hidden
+			overflow-x: auto
+
+			wave
+				overflow-x: hidden
 
 		#labels
-			margin-top: 20px
 			white-space: pre-line
 			font-family: monospace
 			font-size: 0.75rem
 			cursor: default
-			// width: 100%
-			//overflow-x: auto
 			z-index: 3
 			display: flex
 			text-align: center
@@ -109,6 +101,8 @@
 			position: relative
 
 			.label
+				padding-top: 10px
+				padding-bottom: 10px
 				top: 50%
 				z-index: 3
 				cursor: pointer
@@ -130,7 +124,27 @@
 						left: 50%
 						content: attr(data-ipa)
 						background-color: white
-				
+			
+	#play-btn
+		background-color: $button-color
+		width: 200px
+		height: 50px
+		color: white
+		cursor: pointer
+		text-align: center
+		display: flex
+		align-items: center
+		justify-content: center
+		margin: 20px auto
+		bottom: 20px
+		border-radius: 5px
+		box-shadow: 0 0 15px 0px rgba(0,0,0,0.5)
+		transition: all 0.05s ease-in-out
+		&:hover
+			box-shadow: 0 0 20px 0px rgba(0,0,0,0.5)
+		&:active
+			box-shadow: 0 0 15px 0px rgba(0,0,0,0.5)
+			transform: translateY(1px)	
 
 	#kb-ctrls
 		font-size: 0.6rem
@@ -151,17 +165,28 @@
 			padding: 5px
 			border-radius: 5px
 			border: solid 1px black
-			width: 300%
+			width: 350%
 			line-height: 150%
+			z-index: 6
 		&:hover
 			#kb-ctrls-tooltip
 				display: block
 
-	#feedback-btns
+	#feedback
 		margin: 20px auto
 		width: 60%
 		display: flex
 		justify-content: space-around
+
+		#bad-reason
+			display: none
+			position: absolute
+			width: 500px
+			height: 250px
+			resize: none
+			bottom: 0
+			left: 50%
+			margin-left: -250px
 
 		.feedback-btn
 			cursor: pointer
@@ -197,3 +222,5 @@
 		justify-content: space-around
 		div
 			cursor: pointer
+			&:hover
+				text-decoration: underline
