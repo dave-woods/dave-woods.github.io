@@ -99,7 +99,7 @@ $(document).ready(function(){
 			{
 				e.preventDefault();
 				$("#bad-reason").fadeOut(400, function(){
-					console.log($("#bad-reason").val());
+					//console.log($("#bad-reason").val());
 					$("#next-clip").trigger("click");
 				});
 			}
@@ -259,6 +259,7 @@ $(document).ready(function(){
 
 		// TODO: get files from server
 		var bnlist = [
+		"b0156",
 		"blizzdir/blizzard2016-enUKfls-1333",
 		"blizzdir/blizzard2016-enUKfls-1996",
 		"blizzdir/blizzard2016-enUKfls-2037",

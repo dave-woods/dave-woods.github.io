@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Dave Woods</title>
+	<link rel="stylesheet" href="/assets/css/main.css"/>
+	<meta name="viewport" content="width=device-width" />
+	<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script src="/assets/js/main.js" type="text/javascript" charset="utf-8" async defer></script>
+</head>
+<body>
+	<header>
+
+		<div class="header-positioning">
+			<h1 class="header-name">Internship Report</h1>
+			<h3>13th June 2016</h3>
+
+			<nav class="site-nav">
+				<ul>
+					<li>
+						<a href="/">Home</a>
+					</li>
+					<li>
+						<a href="#about">About</a>
+					</li>
+					<li>
+						<a href="#projects">Projects</a>
+					</li>
+					<li>
+						<a href="#papers">Papers</a>
+					</li>
+					<li>
+						<a href="#contact">Contact</a>
+					</li>
+					<li>
+						<a href="/internship/reports">Internship Reports</a>
+					</li>
+					<li>
+						<a href="/internship/vis">Internship AudioVis</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+	<div class="intern-report-wrap">
+		<div class="report">
+			<p>This morning I managed to achieve a few things. I began by making a copy of the <code>wav</code> directory, and downsampling all the files to 16kHz (from the original 44.1kHz), hoping to avoid the misalignment found last week. I also used <code>sed</code> to remove any em-dashes and en-dashes (floating hyphens, really) in the text files, to avoid the problem of them being interpretted as "minus" signs. After that, I restarted the HMM voice building process from the beginning. Once the labeller was complete, I checked a few files, and the alignment appeared to be correct. The audio quality had obviously taken a hit, but I felt that this was an acceptable sacrifice, at least for now.</p>
+			<p>For the visualisation page, I added a highlight behind the wave file when the user hovers over a label, making it very clear which section of the audio is supposed to be playing. Additionally, I made it possible to edit the utterance text, and provide a reason for a "bad" classification. I also fixed some styling to make the display a little nicer.</p>
+			<p>On top of that, over the weekend I registered <a href="http://dwoods.xyz">a new domain</a> where I could host this website (thus, this will be the final report on my github pages site, please visit the URL above to see the others), meaning I could employ back-end code to allow saving of files (such as the classification of the labelling), programmatic listing of files, etc.</p>
+			<p>Building on this allowed me to get these back-end-based services working today, including getting JSON to work in conjunction with PHP to store the results of the classifications.</p>
+			<p>During the afternoon, I went to the other lab to meet Joao and Ketong, who was to help me get the new VM set up in order to host and serve the visualisation page there (as there were too many data files to host everything on my own machine or website). We talked briefly about what needed to happen, but once I showed him the front-end work that I had done and explained the back-end programming I was doing, he seemed to think I was competent enough to be able to pretty much figure it out myself. He gave me a few general pointers, and said I could email him if I needed to, but that setting up the VM to serve the site shouldn't be a big problem, especially given I wouldn't really need to worry about security or high traffic for this project.</p>
+		</div>
+		<div class="report-navigator"><a href="10-06-16.html">Previous report</a><a disabled href="#">Next report</a></div>
+	</div>
+</body>
+</html>
