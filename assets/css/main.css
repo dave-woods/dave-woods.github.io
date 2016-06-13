@@ -9,7 +9,6 @@ body {
 
 a {
   font-family: arial;
-  font-size: 16px;
   color: #333; }
   a:hover {
     color: #666; }
@@ -37,6 +36,9 @@ a {
   min-height: 100vh;
   flex-direction: column;
   flex: 1; }
+
+h1 {
+  text-align: center; }
 
 ul {
   position: relative;
